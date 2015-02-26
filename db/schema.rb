@@ -11,9 +11,77 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150226140907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", force: true do |t|
+    t.text     "comment"
+    t.integer  "user_id"
+    t.integer  "music_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["music_id"], name: "index_comments_on_music_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "music_playlists", force: true do |t|
+    t.integer  "music_id"
+    t.integer  "playlist_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "music_playlists", ["music_id"], name: "index_music_playlists_on_music_id", using: :btree
+  add_index "music_playlists", ["playlist_id"], name: "index_music_playlists_on_playlist_id", using: :btree
+
+  create_table "musics", force: true do |t|
+    t.string   "title"
+    t.string   "artist"
+    t.string   "album"
+    t.integer  "note"
+    t.string   "path"
+    t.string   "cover"
+    t.integer  "category_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "musics", ["category_id"], name: "index_musics_on_category_id", using: :btree
+  add_index "musics", ["user_id"], name: "index_musics_on_user_id", using: :btree
+
+  create_table "playlists", force: true do |t|
+    t.string   "nom"
+    t.integer  "music_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "content"
+  end
+
+  add_index "playlists", ["music_id"], name: "index_playlists_on_music_id", using: :btree
+  add_index "playlists", ["user_id"], name: "index_playlists_on_user_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "login"
+    t.string   "email"
+    t.string   "password"
+    t.boolean  "isAdmin"
+    t.string   "avatar"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "birthday"
+  end
 
 end
