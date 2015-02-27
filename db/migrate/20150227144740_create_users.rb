@@ -7,7 +7,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :password
       t.boolean :isAdmin
-      t.string :avatar
+      t.date :birthday
+
       t.timestamps
     end
   end

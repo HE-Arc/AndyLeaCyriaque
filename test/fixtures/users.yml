@@ -7,6 +7,7 @@ one:
   email: MyString
   password: MyString
   isAdmin: false
+  birthday: 2015-02-27
 
 two:
   firstname: MyString
@@ -15,3 +16,4 @@ two:
   email: MyString
   password: MyString
   isAdmin: false
+  birthday: 2015-02-27

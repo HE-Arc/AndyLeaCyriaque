@@ -2,10 +2,12 @@
 
 one:
   nom: MyString
-  user: 
-  music: 
+  user_id: 
+  music_id: 
+  content: MyText
 
 two:
   nom: MyString
-  user: 
-  music: 
+  user_id: 
+  music_id: 
+  content: MyText
