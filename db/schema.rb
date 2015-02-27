@@ -11,16 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150226140907) do
+ActiveRecord::Schema.define(version: 20150227145628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "categories", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "comments", force: true do |t|
     t.text     "comment"
@@ -61,11 +55,11 @@ ActiveRecord::Schema.define(version: 20150226140907) do
 
   create_table "playlists", force: true do |t|
     t.string   "nom"
-    t.integer  "music_id"
     t.integer  "user_id"
+    t.integer  "music_id"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "content"
   end
 
   add_index "playlists", ["music_id"], name: "index_playlists_on_music_id", using: :btree
@@ -78,10 +72,9 @@ ActiveRecord::Schema.define(version: 20150226140907) do
     t.string   "email"
     t.string   "password"
     t.boolean  "isAdmin"
-    t.string   "avatar"
+    t.date     "birthday"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "birthday"
   end
 
 end
