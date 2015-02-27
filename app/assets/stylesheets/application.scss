@@ -13,5 +13,27 @@
  *= require_tree .
  *= require_self
  */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,300,400);
+
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+
+* {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+}
+.starter-template {
+	padding: 40px 15px;
+	text-align: center;
+}
+
+.logo {
+	background-color: #fff;
+	height: 200px;
+	mask: url(logo.svg#logo) top left / cover;
+	-webkit-mask: url(logo.svg) top left / cover;
+	width: 200px;
+}

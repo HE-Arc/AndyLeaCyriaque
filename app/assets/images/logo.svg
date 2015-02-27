@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="80.000023"
+   height="80.000023"
+   viewBox="0 0 80.000019 80.000019"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="logo-fusion.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="15.139003"
+     inkscape:cy="43.795022"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-midpoints="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4136"
+       empspacing="20"
+       spacingx="0.99999995"
+       spacingy="0.99999995"
+       originx="140.00002"
+       originy="-59.999985" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(140.00001,-912.36224)">
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:medium;line-height:125%;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 40 0 C 17.937034 0 0 17.937034 0 40 C 0 62.062966 17.937034 80 40 80 C 62.062969 80 80.000005 62.062966 80 40 C 79.999999 17.937034 62.062965 0 40 0 z M 40 4.8007812 C 59.468851 4.8007812 75.199218 20.531146 75.199219 40 C 75.199219 42.815582 74.860007 45.548875 74.238281 48.171875 L 68.173828 25.539062 C 66.654995 19.870702 64.329485 16.061681 61.195312 14.113281 C 58.061143 12.164888 54.055883 11.844343 49.181641 13.150391 C 46.059935 13.986851 43.451151 15.419692 41.353516 17.449219 C 39.283262 19.471419 37.86465 21.951184 37.095703 24.886719 L 36.929688 24.929688 C 33.514593 20.180319 28.289482 18.749064 21.251953 20.634766 C 18.513613 21.368506 16.173109 22.654847 14.230469 24.496094 C 12.280489 26.309967 10.985583 28.490822 10.347656 31.039062 L 10.101562 31.105469 L 7.8164062 25.724609 C 13.283545 13.389448 25.617218 4.8007813 40 4.8007812 z M 54.09375 16.248047 C 55.986371 16.24307 57.631467 16.722458 59.027344 17.6875 C 61.260741 19.23158 62.960314 22.181202 64.126953 26.535156 L 71.791016 55.140625 C 66.139131 67.010996 54.044232 75.201172 40 75.201172 C 32.604474 75.201172 25.751105 72.925694 20.091797 69.042969 L 13.658203 45.033203 C 12.051323 39.036241 11.951821 34.396549 13.361328 31.113281 C 14.763495 27.802621 17.805721 25.520312 22.488281 24.265625 C 29.388896 22.416611 33.847461 25.256674 35.865234 32.787109 L 44.042969 63.306641 L 48.191406 62.195312 L 41.181641 36.029297 C 39.736179 30.634769 39.77147 26.385557 41.287109 23.279297 C 42.802741 20.173037 45.846892 18.00659 50.419922 16.78125 C 51.734323 16.429057 52.958177 16.251033 54.09375 16.248047 z M 5.7597656 31.828125 L 14.435547 64.203125 C 8.4654513 57.897914 4.8007813 49.387411 4.8007812 40 C 4.8007812 37.184817 5.1382104 34.450716 5.7597656 31.828125 z "
+       transform="translate(-140.00001,912.36224)"
+       id="path4176" />
+  </g>
+</svg>
