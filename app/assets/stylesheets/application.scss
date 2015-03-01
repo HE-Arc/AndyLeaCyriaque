@@ -10,30 +10,19 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require_tree .
  */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,300,400);
-
+//@import url(http://fonts.googleapis.com/css?family=Alegreya+Sans:100,400);
+//@import url(http://fonts.googleapis.com/css?family=Lato:100,400,700);
+//@import url(http://fonts.googleapis.com/css?family=Raleway:400,100,700);
+//@import url(http://fonts.googleapis.com/css?family=Roboto:400,100);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
-
 * {
 	font-family: 'Open Sans', sans-serif;
-	font-weight: 700;
-}
-.starter-template {
-	padding: 40px 15px;
-	text-align: center;
-}
-
-.logo {
-	background-color: #fff;
-	height: 200px;
-	mask: url(logo.svg#logo) top left / cover;
-	-webkit-mask: url(logo.svg) top left / cover;
-	width: 200px;
+	font-weight: 300 !important;
 }

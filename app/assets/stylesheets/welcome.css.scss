@@ -9,6 +9,18 @@ section {
 	height: 100vh;
 	width: 100vw;
 }
+
+.logo {
+	//background-color: #fff;
+	background-image: url(welcome-logo.png);
+	background-repeat: no-repeat;
+	height: 200px;
+	display: inline-block;
+	//-webkit-mask: url(logo.svg#mask) top left / cover;
+	//mask: url(logo.svg#mask);
+	width: 200px;
+}
+
 .welcome-cover {
 	background-image: url(welcome-cover.jpg);
 	background-position: center;
