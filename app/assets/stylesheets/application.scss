@@ -13,14 +13,23 @@
  *= require_self
  *= require_tree .
  */
-//@import url(http://fonts.googleapis.com/css?family=Alegreya+Sans:100,400);
-//@import url(http://fonts.googleapis.com/css?family=Lato:100,400,700);
-//@import url(http://fonts.googleapis.com/css?family=Raleway:400,100,700);
-//@import url(http://fonts.googleapis.com/css?family=Roboto:400,100);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+
+/*
+Colors : http://www.google.com/design/spec/style/color.html#color-color-palette
+Variables : http://getbootstrap.com/customize/#buttons
+*/
+
+$brand-primary: #E53935;
+
+
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.btn-primary:hover {
+		background-color: #D32F2F;
+}
 
 * {
 	font-family: 'Open Sans', sans-serif;
