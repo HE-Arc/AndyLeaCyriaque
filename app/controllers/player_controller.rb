@@ -1,5 +1,5 @@
 class PlayerController < ApplicationController
-	before_action :authenticate_user!
+	#before_action :authenticate_user!
 
 	def show
 		render 'player/player'
