@@ -13,25 +13,32 @@
  *= require_self
  *= require_tree .
  */
+
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
-
-/*
-Colors : http://www.google.com/design/spec/style/color.html#color-color-palette
-Variables : http://getbootstrap.com/customize/#buttons
-*/
-
-$brand-primary: #E53935;
-
-
-
+@import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-.btn-primary:hover {
-		background-color: #D32F2F;
-}
-
 * {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300 !important;
+}
+
+body {
+	margin: 0;
+}
+
+input[type="text"]:focus {
+	box-shadow: none !important;
+}
+
+.ma-header {
+	border-bottom: $color-border solid 1px;
+	/*box-shadow: 0 0 10px #999;*/
+
+	padding: 0.5em;
+	padding-left: 2em;
+}
+
+.ma-header-brand {
+	font-size: 2em;
 }
