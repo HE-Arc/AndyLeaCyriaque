@@ -15,9 +15,10 @@
  */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
-@import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "variables";
+
 * {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300 !important;
@@ -32,6 +33,7 @@ input[type="text"]:focus {
 }
 
 .ma-header {
+
 	border-bottom: $color-border solid 1px;
 	/*box-shadow: 0 0 10px #999;*/
 
@@ -41,4 +43,24 @@ input[type="text"]:focus {
 
 .ma-header-brand {
 	font-size: 2em;
+}
+
+.ma-uploadform {
+	position: relative;
+	overflow: hidden;
+	margin: 10px;
+}
+.ma-uploadform input[type="file"] {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	height: 100%;
+	width: 100%;
 }

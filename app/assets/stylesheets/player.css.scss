@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "variables";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 html,
 body,
 .ma-player {
@@ -12,15 +15,30 @@ body,
 
 .ma-player-body {
 	position: absolute;
-	padding: 20px;
-	padding-top: 71px;
+	/*padding-top: 51px;*/
 	width: 100%;
 	min-height: 100%;
+	top: 0;
+
+
+}
+
+@media (min-width: $screen-sm-min) {
+	.ma-player-sidebar,
+	.ma-player-content {
+		padding-top: 51px !important;
+		min-height: 100vh;
+	}
+
+	.ma-player-sidebar-menu {
+		text-align: left;
+	}
 }
 
 .ma-player-sidebar {
-	/*border-right: $color-border solid 1px;*/
-	min-height: 100%;
+	border-right: 1px solid $color-border;
+	padding: 0;
+	padding-top: 51px !important;
 	text-align: center;
 }
 
@@ -29,6 +47,38 @@ body,
 	text-align: left;
 }
 
-.ma-player-sidebar-userinfos img {
+.ma-player-sidebar-avatar {
+	border: 1px solid $color-border;
 	margin: 0 auto;
+	padding: 3px;
+}
+
+.ma-player-sidebar-menu {
+	padding: 20px 0;
+}
+
+.ma-player-sidebar-menu ul {
+	margin: 0;
+	padding: 0;
+}
+
+.ma-player-sidebar-menu li {
+	border-top: 1px solid $color-border;
+	list-style-type: none;
+	margin: 0px 0;
+	padding: 10px 20px;
+
+
+	&:last-child {
+		border-bottom: 1px solid $color-border;
+	}
+
+	&:hover {
+		background-color: $table-bg-hover;
+		color: $brand-primary;
+	}
+}
+
+.ma-player-content {
+	height: 100vh;
 }

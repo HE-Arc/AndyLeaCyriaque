@@ -17,8 +17,11 @@
 				</li>
 				<li><a href="#">Profile</a>
 				</li>
-				<li><a href="#">Help</a>
+				<% if user_signed_in? %>
+				<li>
+				<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 				</li>
+				<% end %>
 			</ul>
 			<form class="navbar-form navbar-right">
 				<input type="text" class="form-control" placeholder="Search...">

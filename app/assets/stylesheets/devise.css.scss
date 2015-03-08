@@ -6,8 +6,14 @@ section {
 	align-items: center;
 	justify-content: center;
 
-	height: 100vh;
-	width: 100vw;
+	min-height: 100vh;
+	min-width: 100vw;
+
+	padding: 50px 0;
+}
+
+select {
+	color: #000;
 }
 
 .logo {
@@ -21,7 +27,7 @@ section {
 	width: 200px;
 }
 
-.welcome-cover {
+.ma-devise-cover {
 	background-image: url(welcome-cover.jpg);
 	background-position: center;
 	background-size: cover;
@@ -30,6 +36,15 @@ section {
 	text-align: center;
 }
 
+.ma-devise-welcome {
+	background-image: url(welcome-cover.jpg);
+}
+
+.ma-devise-signup {
+	background-image: url(signup-cover.jpg);
+}
+
 .ma-login-sublinks {
 	padding: 10px;
 }
+
