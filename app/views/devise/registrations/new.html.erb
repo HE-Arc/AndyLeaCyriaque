@@ -1,54 +1,62 @@
-<h2>Sign up</h2>
+<section class="ma-devise-cover ma-devise-signup">
+	<div class="container">
+		<div class="logo center-block"></div>
+		<h1>MusiARC</h1>
+		<p class="lead">Sign up to MusiARC !</p>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+		<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'col-md-6 col-md-push-3 col-sd-8 col-sd-push-2'}) do |f| %>
+			<%= devise_error_messages! %>
 
-  <div class="field"> 
-    <%= f.label :login %><br />
-    <%= f.text_field :login %>
-  </div>
+			<div class="form-group">
+				<%= f.label :login %><br />
+				<%= f.text_field :login, :class => 'form-control' %>
+			</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+			<div class="form-group">
+				<%= f.label :email %><br />
+				<%= f.email_field :email, :class => 'form-control', autofocus: true %>
+			</div>
 
-  <div class="field">
-    <%= f.label :firstname %><br />
-    <%= f.text_field :firstname %>   
-  </div>
+			<div class="form-group">
+				<%= f.label :firstname %><br />
+				<%= f.text_field :firstname, :class => 'form-control' %>
+			</div>
 
-  <div class="field">
-    <%= f.label :lastname %><br />
-    <%= f.text_field :lastname %> 
-  </div>
+			<div class="form-group">
+				<%= f.label :lastname %><br />
+				<%= f.text_field :lastname, :class => 'form-control' %>
+			</div>
 
-  <div class="field">
-    <%= f.label :birthday %><br />
-    <%= f.date_select :birthday, :order => [:day, :month, :year], :start_year => 1900 %>
-  </div>
+			<div class="form-group">
+				<%= f.label :birthday %><br />
+				<%= f.date_select :birthday, :order => [:day, :month, :year], :start_year => 1900, :class => 'form-control' %>
+			</div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @validatable %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+			<div class="form-group">
+				<%= f.label :password %>
+				<% if @validatable %>
+				<em>(<%= @minimum_password_length %> characters minimum)</em>
+				<% end %><br />
+				<%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
+			</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+			<div class="form-group">
+				<%= f.label :password_confirmation %><br />
+				<%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+			</div>
 
-  <div class="field">
-    <%= f.label :avatar %><br />
-    <%= f.file_field :avatar %>
-  </div>
+			<div class="form-group">
+				<%= f.label :avatar %><br />
+				<div class="ma-uploadform btn btn-default btn-lg btn-block">
+					<span id="ma-uploadform-title">Upload</span>
+					<%= f.file_field :avatar, id: "uploadFormTitle", class: "upload" %>
+				</div>
+			</div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+			<div class="form-group">
+				<%= f.submit "Sign up", :class => 'btn btn-primary btn-lg btn-block' %>
+			</div>
+		<div class="ma-login-sublinks"><%= render "devise/shared/links" %></div>
+		<% end %>
+	</div>
+</section>
