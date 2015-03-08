@@ -1,6 +1,7 @@
 // Place all the styles related to the player controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "font-awesome";
 @import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -43,14 +44,21 @@ body,
 }
 
 .ma-player-sidebar-userinfos {
-	padding: 2em;
-	text-align: left;
+	padding: 30px;
 }
 
 .ma-player-sidebar-avatar {
+	background-color: $color-primary;
+}
+
+.ma-player-sidebar-avatar-wrapper {
+
 	border: 1px solid $color-border;
 	margin: 0 auto;
 	padding: 3px;
+
+	max-height: 200px;
+	max-width: 200px;
 }
 
 .ma-player-sidebar-menu {
@@ -66,7 +74,7 @@ body,
 	border-top: 1px solid $color-border;
 	list-style-type: none;
 	margin: 0px 0;
-	padding: 10px 20px;
+	padding: 10px 30px;
 
 
 	&:last-child {
@@ -77,6 +85,21 @@ body,
 		background-color: $table-bg-hover;
 		color: $brand-primary;
 	}
+}
+
+.ma-player-sidebar-controls {
+	padding: 0 30px;
+	text-align: left;
+}
+
+.ma-player-sidebar-controls .progress {
+	height: 10px;
+}
+
+.ma-player-sidebar-controls button {
+	height: 40px;
+	width: 40px;
+	margin-right: 10px;
 }
 
 .ma-player-content {
