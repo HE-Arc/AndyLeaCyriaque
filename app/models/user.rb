@@ -6,8 +6,7 @@ class User < ActiveRecord::Base
       :thumb => "75x75#",
       :small => "100x100#",
       :medium => "150x150>"
-    }
-  
+      }, :default_url => "user-undefined.png"
    validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   
   devise :database_authenticatable, :registerable,
