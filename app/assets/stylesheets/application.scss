@@ -33,6 +33,20 @@ input[type="text"]:focus {
 	box-shadow: none !important;
 }
 
+.btn-primary:focus,
+.btn-primary:hover {
+	background-color: $color-primary-dark !important;
+}
+
+/*.navbar {
+	background-color: $color-primary !important;
+	color: white !important;
+}
+
+.navbar a {
+	color: white !important;
+}*/
+
 .ma-header {
 
 	border-bottom: $color-border solid 1px;
