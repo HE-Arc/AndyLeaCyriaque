@@ -1,6 +1,6 @@
 <div class="ma-player-sidebar-userinfos">
 	<div class="ma-player-sidebar-avatar-wrapper"><%= image_tag(current_user.avatar.url, class: "img-responsive ma-player-sidebar-avatar") %></div>
-  <h3><%= current_user.lastname %></h3>
+  <h3><%= current_user.firstname %> <%= current_user.lastname %></h3>
 </div>
 <div class="ma-player-sidebar-controls container-fluid">
 	<div>
