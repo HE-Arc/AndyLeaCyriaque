@@ -94,6 +94,11 @@ body,
 	height: 10px;
 }
 
+.ma-player-sidebar-controls .progress-bar {
+	-webkit-transition: none;
+	transition: none;
+}
+
 .ma-player-sidebar-controls button {
 	height: 40px;
 	width: 40px;
@@ -102,4 +107,11 @@ body,
 
 .ma-player-content {
 	height: 100vh;
+}
+
+#test {
+	height: 16px;
+	width: 20px;
+	position: absolute;
+	cursor: pointer;
 }

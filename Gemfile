@@ -30,6 +30,8 @@ gem 'devise'
 
 gem 'jquery-fileupload-rails'
 
+gem 'jquery-ui-rails'
+
 gem "paperclip", "~> 4.2"
 
 
