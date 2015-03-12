@@ -28,13 +28,6 @@ gem 'spring',        group: :development
 
 gem 'devise'
 
-gem 'jquery-fileupload-rails'
-
-gem 'jquery-ui-rails'
-
-gem "paperclip", "~> 4.2"
-
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -42,12 +35,11 @@ gem "paperclip", "~> 4.2"
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'capistrano-rails', group: :development
+gem 'capistrano-rvm', group: :development
+gem 'capistrano-passenger', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-
 gem 'bootstrap-sass', '~> 3.3.3'
-
-gem 'font-awesome-rails'
