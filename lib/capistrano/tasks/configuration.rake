@@ -8,7 +8,7 @@ namespace :deploy do
       upload!(File.expand_path('../../../../config/app.yml', __FILE__), "#{fetch(:release_path)}/config/app.yml")
     end
   end
- 
+
   # this mean that this task is run after code is updated on remote servers (but before app is restarted)
   before "deploy:updated", :upload_configuration
 end
