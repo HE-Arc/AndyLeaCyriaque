@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(version: 20150308160215) do
 
   add_index "admin_tables", ["user_id"], name: "index_admin_tables_on_user_id", using: :btree
 
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "comments", force: true do |t|
     t.text     "comment"
     t.integer  "user_id"
@@ -70,6 +76,15 @@ ActiveRecord::Schema.define(version: 20150308160215) do
 
   add_index "playlists", ["music_id"], name: "index_playlists_on_music_id", using: :btree
   add_index "playlists", ["user_id"], name: "index_playlists_on_user_id", using: :btree
+
+  create_table "uploads", force: true do |t|
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "firstname"
