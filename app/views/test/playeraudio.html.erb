@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PlayerAudio</title>
+		<%= favicon_link_tag 'favicon.ico' %>
+		<meta name="viewport" content="width=device-width, height=device-height initial-scale=1, maximum-scale=1, user-scalable=no">
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
+
+	<audio id="audio">
+    Your browser does not support the audio element.
+  </audio>
+  <button class="play">Play</button>
+
+  <button class="pause">Pause</button>
+  <script>
+    $(document).ready(function() {
+        var audioElement = document.getElementById('audio');
+        //audioElement.setAttribute('src', 'http://radio.db0.fr/mp3/International/Katy%20Perry/Katy%20Perry%20-%20ET.mp3');
+        audioElement.setAttribute('src', 'Stone.mp3');
+        audioElement.load()
+        //audioElement.setAttribute('src', 'loading.ogg');
+
+        $.get();
+
+        audioElement.addEventListener("load", function() {
+            audioElement.play();
+        }, true);
+
+        $('.play').click(function() {
+            audioElement.play();         
+        });
+
+        $('.pause').click(function() {
+            audioElement.pause();
+        });
+    });
+    </script>
+	</body>
+</html>
