@@ -45,6 +45,10 @@ body,
 
 .ma-player-sidebar-avatar {
 	background-color: $color-primary;
+	height: 200px;
+	min-height: 200px;
+	min-width: 200px;
+	width: 200px;
 }
 
 .ma-player-sidebar-avatar-wrapper {
