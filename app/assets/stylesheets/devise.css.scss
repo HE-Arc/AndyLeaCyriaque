@@ -12,13 +12,14 @@ section {
 	padding: 50px 0;
 }
 
-select {
-	color: #000;
+select,
+option {
+	color: #000 !important;
 }
 
 .logo {
 	//background-color: #fff;
-	background-image: url(welcome-logo.png);
+	background-image: image-url('welcome-logo.png');
 	background-repeat: no-repeat;
 	height: 200px;
 	display: inline-block;
@@ -28,7 +29,7 @@ select {
 }
 
 .ma-devise-cover {
-	background-image: url(welcome-cover.jpg);
+	background-image: image-url('welcome-cover.jpg');
 	background-position: center;
 	background-size: cover;
 	color: #fff;
@@ -37,14 +38,15 @@ select {
 }
 
 .ma-devise-welcome {
-	background-image: url(welcome-cover.jpg);
+	background-image: image-url('welcome-cover.jpg');
 }
 
 .ma-devise-signup {
-	background-image: url(signup-cover.jpg);
+	background-image: image-url('signup-cover.jpg');
 }
 
 .ma-login-sublinks {
 	padding: 10px;
 }
+
 
