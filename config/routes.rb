@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources:users
   resources:playlists
   get 'test' => 'test#playeraudio'
+  get 'users/playlists/:id' => 'playlists#indexUser'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
