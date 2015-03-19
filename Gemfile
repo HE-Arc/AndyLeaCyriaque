@@ -29,6 +29,9 @@ gem 'spring',        group: :development
 
 gem 'devise'
 
+#upload files
+gem 'jquery-fileupload-rails'
+
 gem "paperclip", "~> 4.2"
 
 # Use ActiveModel has_secure_password
