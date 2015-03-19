@@ -68,11 +68,13 @@ ActiveRecord::Schema.define(version: 20150319135148) do
   create_table "playlists", force: true do |t|
     t.string   "nom"
     t.integer  "user_id"
+    t.integer  "music_id"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "playlists", ["music_id"], name: "index_playlists_on_music_id", using: :btree
   add_index "playlists", ["user_id"], name: "index_playlists_on_user_id", using: :btree
 
   create_table "uploads", force: true do |t|
@@ -99,6 +101,10 @@ ActiveRecord::Schema.define(version: 20150319135148) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
