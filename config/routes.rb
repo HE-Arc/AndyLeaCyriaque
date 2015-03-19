@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
+
   devise_for :users , :controllers => { :registrations => "users/registrations"}
   
 	root 'player#show'
   resources:users
+<<<<<<< HEAD
   resources:musics
   
   get '/test', to: 'musics#upload'
+=======
+  resources:playlists
+  get 'test' => 'test#playeraudio'
+>>>>>>> 81c442defd9ee23f8af929a412cd595f4f7f6c66
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
