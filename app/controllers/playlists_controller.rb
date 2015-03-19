@@ -20,14 +20,22 @@ class PlaylistsController < ApplicationController
   # GET /playlists/1/edit
   def edit
   end
+  
+  #GET /playlists/id_user
+  def indexUser
+    @user = User.find(params[:id])
+    @playlists = @user.playlists
+    render 'index'
+  end
 
   # POST /playlists
   # POST /playlists.json
   def create
+    @user = current_user
     @playlist = Playlist.new(get_params)
-
     respond_to do |format|
       if @playlist.save
+        @user.playlists << @playlist
         format.html { redirect_to @playlist, notice: 'Playlist was successfully created.' }
         format.json { render :show, status: :created, location: @playlist }
       else
@@ -67,7 +75,7 @@ class PlaylistsController < ApplicationController
       @playlist = Playlist.find(params[:id])
     end
 
-  def get_params
+  def get_params 
     params.require(:playlist).permit(:user_id, :nom, :content)
     end
 end
