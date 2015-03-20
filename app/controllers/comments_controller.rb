@@ -1,15 +1,21 @@
 class CommentsController < ApplicationController
+  def new
+    
+  end
+  
   def create  
       @music = Music.find(params[:music_id])
-      @music.comments.create(get_params)
+      @comment=@music.comments.create(get_params)
       @user = current_user
-      @user.comments = @music.comments
+      @comment.login=@user.login
+      @user.comments << @comment
       redirect_to @music
   end
   
   private
   def get_params
-    params[:comment].permit(:user_id, :comment_id, :comment)
+    params[:comment].permit(:user_id, :comment_id, :comment, :login)
   end
+  
   
 end
