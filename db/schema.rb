@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326132041) do
+ActiveRecord::Schema.define(version: 20150326141232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,10 @@ ActiveRecord::Schema.define(version: 20150326132041) do
     t.string   "path_content_type"
     t.integer  "path_file_size"
     t.datetime "path_updated_at"
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
   end
 
   add_index "musics", ["category_id"], name: "index_musics_on_category_id", using: :btree
