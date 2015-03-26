@@ -10,9 +10,18 @@
   <tbody>
     <% @musics.each do |music| %>
       <tr>
+        <td> <%= image_tag(music.cover.url, class: "img-responsive ma-player-sidebar-avatar") %></td>
+        <td> <%=music.title %></td>
+        <td> 
+        
+         <audio controls> 
+           <source src=<%=music.path.url[0...-11] %> type="audio/mpeg">  
+          </audio>
+        
+        </td>
         <td><%= link_to 'Show', music %></td>
         <td><%= link_to 'Edit', edit_music_path(music) %></td>
-        <td><%= link_to 'Destroy', music, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', music, method: :delete, data: { confirm: 'Etes-vous sur(e)?' } %></td>
       </tr>
     <% end %>
   </tbody>
