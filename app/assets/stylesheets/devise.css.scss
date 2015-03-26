@@ -1,16 +1,6 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-section {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	min-height: 100vh;
-	min-width: 100vw;
-
-	padding: 50px 0;
-}
 
 select,
 option {
@@ -35,6 +25,15 @@ option {
 	color: #fff;
 	font-weight: bold;
 	text-align: center;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	min-height: 100vh;
+	min-width: 100vw;
+
+	padding: 50px 0;
 }
 
 .ma-devise-welcome {
@@ -48,5 +47,3 @@ option {
 .ma-login-sublinks {
 	padding: 10px;
 }
-
-
