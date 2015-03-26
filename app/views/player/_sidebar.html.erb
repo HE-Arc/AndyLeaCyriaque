@@ -1,6 +1,6 @@
 <div class="ma-player-sidebar-userinfos">
-	<div class="ma-player-sidebar-avatar-wrapper"><%= image_tag(current_user.avatar.url, class: "img-responsive ma-player-sidebar-avatar") %></div>
-  <h3><%= current_user.firstname %> <%= current_user.lastname %></h3>
+	<div class="ma-player-sidebar-avatar-wrapper"><%= image_tag(@user.avatar.url, class: "img-responsive ma-player-sidebar-avatar") %></div>
+  <h3><%= @user.firstname %> <%= @user.lastname %></h3>
 </div>
 <div class="ma-player-sidebar-controls container-fluid">
 	<div>
@@ -14,9 +14,9 @@
 		<div class="">
 			<div><small>00:45 / 06:20</small></div>
 			<div id="ma-player-progressbar" class="progress">
-				<div id="test"></div>
-				<div id="ma-player-progressbar-progress" class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-					<span class="sr-only">40% Complete (success)</span>
+				<div id="ma-player-progressbar-handler"></div>
+				<div id="ma-player-progressbar-bar" class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+					<!--span class="sr-only">40% Complete (success)</span-->
 				</div>
 			</div>
 		</div>

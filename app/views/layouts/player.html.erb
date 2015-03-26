@@ -1,0 +1,13 @@
+<%= render 'application/header' %>
+<div class="ma-player container-fluid">
+	<%= render 'player/header' %>
+	<div class="row ma-player-body">
+		<div class="ma-player-sidebar col-sm-3">
+			<%= render 'player/sidebar' %>
+		</div>
+		<div class="ma-player-content col-sm-9">
+			<%= yield -%>
+		</div>
+	</div>
+</div>
+<%= render 'application/footer' %>

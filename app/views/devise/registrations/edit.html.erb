@@ -3,6 +3,11 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
+  <div class="form-group">
+		<%= f.label :login %><br />
+		<%= f.text_field :login, :class => 'form-control' %>
+	</div>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
@@ -11,6 +16,20 @@
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
+  <div class="form-group">
+    <%= f.label :firstname %><br />
+    <%= f.text_field :firstname, :class => 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :lastname %><br />
+    <%= f.text_field :lastname, :class => 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :birthday %><br />
+    <%= f.date_select :birthday, :order => [:day, :month, :year], :start_year => 1900, :class => 'form-control' %>
+  </div>
 
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
@@ -25,6 +44,14 @@
   <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :avatar %><br />
+    <div class="ma-uploadform btn btn-default btn-lg btn-block">
+      <span id="ma-uploadform-title">Upload</span>
+      <%= f.file_field :avatar, id: "uploadFormTitle", class: "upload" %>
+    </div>
   </div>
 
   <div class="actions">

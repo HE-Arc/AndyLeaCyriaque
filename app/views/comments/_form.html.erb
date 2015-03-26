@@ -1,0 +1,12 @@
+<%= form_for [@music, @comment] do |f| %>
+
+<p>
+  <%= f.label :comment %>
+  <%= f.text_area :comment %>
+</p>
+
+<p>
+  <%= f.submit %>
+</p>
+
+<% end %>

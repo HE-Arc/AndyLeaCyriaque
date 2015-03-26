@@ -1,37 +1,17 @@
-<%= form_for @user do |f| %>
-  <p> 
-    <%= f.label :login %>
-    <%= f.text_field :login %>
-  </p>
-  <p>
-    <%= f.label :firstname %>
-    <%= f.text_field :firstname %>   
-  </p>
-  <p>
-    <%= f.label :lastname %>
-    <%= f.text_field :lastname %> 
-  </p>
-<p>
-  <%= f.label :birthday %>
-  <%= f.date_select :birthday, :order => [:day, :month, :year], :start_year => 1900 %>
-</p>
-  <p>
-    <%= f.label :email %>
-    <%= f.email_field :email %>  
-  </p>
-  <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>   
-</p>
-  <p>
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar %>   
-</p>  
-<p>
-    <%= f.label :admin %>
-  <%= f.check_box :isAdmin %>   
-</p>
-  <p>
-    <%= f.submit class:"btn" %>
-  </p>
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>

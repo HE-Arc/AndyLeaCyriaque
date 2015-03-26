@@ -1,6 +1,7 @@
 class Music < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
+<<<<<<< HEAD
    
    has_attached_file :cover,
    :styles => {
@@ -16,4 +17,9 @@ class Music < ActiveRecord::Base
   validates_attachment_content_type :path, :content_type => [ 'application/mp3', 'application/x-mp3', 'audio/mpeg', 'audio/mp3' ]
   validates_attachment_size :path, :less_than => 20.megabytes
 
+=======
+  
+  has_many :musicPlaylists
+  has_many :comments
+>>>>>>> a0e5af316cffb857353eecb903afb56dc74e5b4f
 end
