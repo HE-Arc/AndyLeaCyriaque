@@ -1,80 +1,76 @@
 class MusicsController < ApplicationController
-  protect_from_forgery with: :exception
-  before_action :authenticate_user!
-  
+  before_action :set_music, only: [:show, :edit, :update, :destroy]
+
+  # GET /musics
+  # GET /musics.json
   def index
-    @musics = Musics.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @music.map{|music| music.to_jq_upload } }
-    end
+    @musics = Music.all
   end
 
+  # GET /musics/1
+  # GET /musics/1.json
   def show
-    @music = Music.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @music }
-    end
   end
 
+  # GET /musics/new
   def new
     @music = Music.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @music }
-    end
   end
 
+  # GET /musics/1/edit
   def edit
-    @music = Music.find(params[:id])
   end
 
+  # POST /musics
+  # POST /musics.json
   def create
-    @music = Music.new(params[get_params])
+    @music = Music.new(music_params)
 
     respond_to do |format|
       if @music.save
-        format.html {
-          render :json => [@music.to_jq_upload].to_json,
-          :content_type => 'text/html',
-          :layout => false
-        }
-                format.json { render json: {files: [@music.to_jq_upload]}, status: :created, location: @music }
+        format.html { redirect_to @music, notice: 'Music was successfully created.' }
+        format.json { render :show, status: :created, location: @music }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @music.errors, status: :unprocessable_entity }
       end
     end
   end
 
+  # PATCH/PUT /musics/1
+  # PATCH/PUT /musics/1.json
   def update
-    @music = Music.find(params[:id])
     respond_to do |format|
-      if @music.update_attributes(params[:music])
-        format.html { redirect_to @music, notice: 'Upload was successfully updated.' }
-        format.json { head :no_content }
+      if @music.update(music_params)
+        format.html { redirect_to @music, notice: 'Music was successfully updated.' }
+        format.json { render :show, status: :ok, location: @music }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @music.errors, status: :unprocessable_entity }
       end
     end
   end
 
+  # DELETE /musics/1
+  # DELETE /musics/1.json
   def destroy
-    @music = Music.find(params[:id])
     @music.destroy
-
     respond_to do |format|
-      format.html { redirect_to uploads_url }
+      format.html { redirect_to musics_url, notice: 'Music was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
-    
+
   private
-  def get_params
-        params.require(:music).permit(:music)
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_music
+      @music = Music.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def music_params
+      #params[:music].require(:title, :path).permit(:title, :artist, :album, :path, :cover)
+      
+      params[:music].permit(:title, :artist, :album, :path, :cover, :path_file_name)
+    end
 end
