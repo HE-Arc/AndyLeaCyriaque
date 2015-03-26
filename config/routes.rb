@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 	root 'player#show'
   resources:users
   resources:playlists
+  
   get 'test' => 'test#playeraudio'
   get 'user/:login' => 'player#show_profile'
   get 'users/playlists/:id' => 'playlists#indexUser'
