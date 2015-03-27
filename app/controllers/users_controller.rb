@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_filter :check_permission, only: [:edit, :update, :destroy]
   # GET /users
   # GET /users.json
   def index
@@ -71,4 +71,10 @@ class UsersController < ApplicationController
     def user_params
       params[:user]
     end
+  
+    def check_permission
+      @user = User.find(params[:id])
+      redirect_to root_path, notice: 'You dont have enough permissions to be here' unless @user==current_user
+    end
+  
 end

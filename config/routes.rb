@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
 	devise_for :users , :controllers => { :registrations => "users/registrations"}
 	root 'player#home'
 	resources:users
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
 	get 'music/:id' => 'musics#show'
 	get 'playlist/:id' => 'player#show_playlist'
 	get 'playlist/:id/edit' => 'player#edit_playlist'
+
 
 	resources :musics do
 		resources:comments, only: [:create]
