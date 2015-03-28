@@ -81,7 +81,8 @@ class PlaylistsController < ApplicationController
     end
   
   def check_permission
-    @user = Playlist.find(params[:id]).user_id
+    @userId = Playlist.find(params[:id]).user_id
+    @user = User.find(@userId)
     redirect_to root_path, notice: 'You dont have enough permissions to be here' unless @user==current_user
   end 
 end

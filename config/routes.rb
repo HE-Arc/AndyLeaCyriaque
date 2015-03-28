@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  post '/rate' => 'rater#create', :as => 'rate'
 	devise_for :users , :controllers => { :registrations => "users/registrations"}
 	root 'player#home'
 	resources:users

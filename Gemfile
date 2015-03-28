@@ -31,8 +31,8 @@ gem 'devise'
 
 #upload files
 gem 'jquery-fileupload-rails'
-gem "paperclip", "~> 3.5.3"
-#gem "paperclip", "~> 4.2"
+#gem "paperclip", "~> 3.5.3"
+gem "paperclip", "~> 4.2"
 
 # allow to rate
 gem "letsrate", :git => "git://github.com/iammyr/letsrate.git"
