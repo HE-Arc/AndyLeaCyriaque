@@ -22,6 +22,7 @@ Overall : <%= rating_for @music, "overall" %>
 <strong>Your votes:</strong><br />
 Music Rating : <%= rating_for_user @music, current_user, "autism_friendly", :star => 10 %>
 </p>
+<%= render :partial => "musics_playlists/form", :locals => {:music_id => @music.id} %>
 <hr/>
 
 <%= render @comments %>

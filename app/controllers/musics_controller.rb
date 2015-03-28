@@ -13,6 +13,9 @@ class MusicsController < ApplicationController
     @music = Music.find(params[:id])
     @comments = @music.comments
     @comment = @music.comments.build
+    @playlists = Playlist.all
+    @musicPlaylists = @music.music_playlists
+    @musicPlaylist = @music.music_playlists.build
   end
 
   # GET /musics/new
