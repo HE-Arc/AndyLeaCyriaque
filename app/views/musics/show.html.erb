@@ -1,19 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_music_path(@music) %>
-<%= link_to 'Back', musics_path %>
+<h2><%= @music.title%> </h2>
 
-Show us how the users like this music
+<td> <%= image_tag(@music.cover.url, class: "img-responsive ma-player-sidebar-avatar") %></td>
+
+<audio controls> 
+ <source src=<%=@music.path.url[0...-11] %> type="audio/mpeg">  
+</audio>
+
+
+Show us how you like this music!
 
 <p>
+  
 <strong>Rating:</strong><br />
-Autism_friendly : <%= rating_for @music, "autism_friendly" %> <br />
 Overall : <%= rating_for @music, "overall" %>
 </p>
-<hr />
+<h />
 <p>
+  
 <strong>Your votes:</strong><br />
-Autism_friendly : <%= rating_for_user @music, current_user, "autism_friendly", :star => 7 %>
-Overall : <%= rating_for_user @music, current_user, "autism_friendly", :star => 7 %>
+Music Rating : <%= rating_for_user @music, current_user, "autism_friendly", :star => 10 %>
 </p>
-<hr />
+<hr/>
+
+<%= link_to 'Edit', edit_music_path(@music) %>
+<%= link_to 'Back', musics_path %>
