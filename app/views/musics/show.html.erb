@@ -1,4 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<!--<%= link_to 'Edit', edit_music_path(@music) %> |-->
+<%= link_to 'Edit', edit_music_path(@music) %>
 <%= link_to 'Back', musics_path %>
+
+Show us how the users like this music
+
+<p>
+<strong>Rating:</strong><br />
+Autism_friendly : <%= rating_for @music, "autism_friendly" %> <br />
+Overall : <%= rating_for @music, "overall" %>
+</p>
+<hr />
+<p>
+<strong>Your votes:</strong><br />
+Autism_friendly : <%= rating_for_user @music, current_user, "autism_friendly", :star => 7 %>
+Overall : <%= rating_for_user @music, current_user, "autism_friendly", :star => 7 %>
+</p>
+<hr />

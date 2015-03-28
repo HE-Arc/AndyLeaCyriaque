@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/iammyr/letsrate.git
+  revision: 15991d57865eab3fe6272b2b22a7552b7c1aab8c
+  specs:
+    letsrate (1.0.9)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -183,6 +189,7 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails
   jquery-ui-rails
+  letsrate!
   paperclip (~> 4.2)
   pg
   rails (= 4.1.0)

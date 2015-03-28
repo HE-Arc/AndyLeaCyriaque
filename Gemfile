@@ -33,6 +33,9 @@ gem 'devise'
 gem 'jquery-fileupload-rails'
 gem "paperclip", "~> 4.2"
 
+# allow to rate
+gem "letsrate", :git => "git://github.com/iammyr/letsrate.git"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
