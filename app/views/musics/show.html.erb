@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<%= render @comments %>
 
 <h2><%= @music.title%> </h2>
 
@@ -24,5 +25,8 @@ Music Rating : <%= rating_for_user @music, current_user, "autism_friendly", :sta
 </p>
 <hr/>
 
+<h3>Add comment</h3>
+
+<%= render 'comments/form' %>
 <%= link_to 'Edit', edit_music_path(@music) %>
 <%= link_to 'Back', musics_path %>

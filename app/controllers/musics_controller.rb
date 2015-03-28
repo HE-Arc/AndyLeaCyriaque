@@ -10,6 +10,9 @@ class MusicsController < ApplicationController
   # GET /musics/1
   # GET /musics/1.json
   def show
+    @music = Music.find(params[:id])
+    @comments = @music.comments
+    @comment = @music.comments.build
   end
 
   # GET /musics/new
