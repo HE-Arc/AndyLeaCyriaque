@@ -22,12 +22,6 @@ ActiveRecord::Schema.define(version: 20150328010424) do
 
   add_index "admin_tables", ["user_id"], name: "index_admin_tables_on_user_id", using: :btree
 
-  create_table "categories", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "comments", force: true do |t|
     t.text     "comment"
     t.integer  "user_id"
@@ -61,14 +55,6 @@ ActiveRecord::Schema.define(version: 20150328010424) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "path_file_name"
-    t.string   "path_content_type"
-    t.integer  "path_file_size"
-    t.datetime "path_updated_at"
-    t.string   "cover_file_name"
-    t.string   "cover_content_type"
-    t.integer  "cover_file_size"
-    t.datetime "cover_updated_at"
   end
 
   add_index "musics", ["category_id"], name: "index_musics_on_category_id", using: :btree
@@ -77,13 +63,11 @@ ActiveRecord::Schema.define(version: 20150328010424) do
   create_table "playlists", force: true do |t|
     t.string   "nom"
     t.integer  "user_id"
-    t.integer  "music_id"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "playlists", ["music_id"], name: "index_playlists_on_music_id", using: :btree
   add_index "playlists", ["user_id"], name: "index_playlists_on_user_id", using: :btree
 
   create_table "rates", force: true do |t|
@@ -111,13 +95,6 @@ ActiveRecord::Schema.define(version: 20150328010424) do
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
 
-  create_table "uploads", force: true do |t|
-    t.string   "upload_file_name"
-    t.string   "upload_content_type"
-    t.integer  "upload_file_size"
-    t.datetime "upload_updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "firstname"
     t.string   "lastname"
@@ -135,13 +112,22 @@ ActiveRecord::Schema.define(version: 20150328010424) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",        default: 0,  null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
 end
