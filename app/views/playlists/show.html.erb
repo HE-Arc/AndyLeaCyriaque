@@ -1,6 +1,18 @@
 <h1>Hello</h1>
 <p id="notice"><%= notice %></p>
-<% if @user == current_user %>  
-  <%= link_to 'Edit', edit_playlist_path(@playlist) %>
-<% end %>
-<%= link_to 'Back', playlists_path %>
+<h2><%= @playlist.nom%> </h2>
+<tbody>
+  <% @musicsPlaylists.each do |music| %>
+    <% @song = Music.find(music.music_id) %>
+    <p><%=@song.artist%>
+      <%=@song.title%>
+    <audio controls> 
+    <source src=<%=@song.path.url[0...-11] %> type="audio/mpeg">  
+    </audio></p>
+  <%end%>
+  <% if @user == current_user %>  
+    <%= link_to 'Edit', edit_playlist_path(@playlist) %>
+    <%= link_to 'Destroy', @playlist, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+  <%= link_to 'Back', playlists_path %>
+</tbody>

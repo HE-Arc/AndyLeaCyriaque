@@ -17,6 +17,7 @@ class Music < ActiveRecord::Base
   validates_attachment_size :path, :less_than => 20.megabytes
   
   has_many :music_playlists
+  has_many :playlists, :through => :music_playlists
   has_many :comments
 
   letsrate_rateable "autism_friendly", "overall"

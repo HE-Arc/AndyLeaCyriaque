@@ -12,7 +12,12 @@ class MusicPlaylistsController < ApplicationController
   end
   
   def show
-
+    @playlists = MusicPlaylist.all
+  end
+  
+  def index
+    @playlists = MusicPlaylist.all
+  
   end
   
   private

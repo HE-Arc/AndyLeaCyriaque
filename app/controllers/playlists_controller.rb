@@ -11,6 +11,10 @@ class PlaylistsController < ApplicationController
   # GET /playlists/1
   # GET /playlists/1.json
   def show
+    @playlist = Playlist.find(params[:id])
+    @userId = Playlist.find(params[:id]).user_id
+    @user = User.find(@userId)
+    @musicsPlaylists = MusicPlaylist.where("playlist_id=?", params[:id])
   end
 
   # GET /playlists/new
