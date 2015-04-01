@@ -1,42 +1,47 @@
-<%= form_for(@music) do |f| %>
-  <% if @music.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@music.errors.count, "error") %> prohibited this music from being saved:</h2>
+<%= form_for(@music, remote: true) do |f| %>
+<% if @music.errors.any? %>
+<div id="error_explanation" class="alert alert-danger" role="alert">
+	<h2><%= pluralize(@music.errors.count, "error") %> prohibited this music from being saved:</h2>
 
-      <ul>
-      <% @music.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	<ul>
+		<% @music.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
 
-  <p> 
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
+<div id="error_explanation" class="alert alert-danger hidden" role="alert">
+	<strong>Oh snap !</strong>
+	<p><ul id="error_explanation_list"></ul></p>
+</div>
 
-  <p> 
-    <%= f.label :artist %>
-    <%= f.text_field :artist %>
-  </p>
+<p>
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+</p>
 
-  <p> 
-    <%= f.label :album %>
-    <%= f.text_field :album %>
-  </p>
+<p>
+	<%= f.label :artist %>
+	<%= f.text_field :artist %>
+</p>
 
-  <p> 
-    <%= f.label :cover %>
-    <%= f.file_field :cover %>
-  </p>
+<p>
+	<%= f.label :album %>
+	<%= f.text_field :album %>
+</p>
 
-  <p> 
-    <%= f.label :morceau %>
-    <%= f.file_field :path %>
-  </p>
+<p>
+	<%= f.label :cover %>
+	<%= f.file_field :cover %>
+</p>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<p>
+	<%= f.label :track %>
+	<%= f.file_field :path %>
+</p>
+
+<div class="actions">
+	<%= f.submit class: 'btn btn-primary' %>
+</div>
 <% end %>
