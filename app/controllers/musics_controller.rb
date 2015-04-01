@@ -1,5 +1,6 @@
 class MusicsController < ApplicationController
   before_action :set_music, only: [:show, :edit, :update, :destroy]
+  #layout false
 
   # GET /musics
   # GET /musics.json
@@ -35,10 +36,13 @@ class MusicsController < ApplicationController
     respond_to do |format|
       if @music.save
         format.html { redirect_to @music, notice: 'Music was successfully created.' }
-        format.json { render :show, status: :created, location: @music }
+        #format.json { render :show, status: :created, location: @music }
+		#format.html { render :show }
+		format.json { render json: { :status => :created, :message => @music}, location: @music }
       else
         format.html { render :new }
-        format.json { render json: @music.errors, status: :unprocessable_entity }
+        #format.json { render json: @music.errors.full_messages, status: :unprocessable_entity }
+		format.json { render json: { :status => :unprocessable_entity, :message => @music.errors.full_messages } }
       end
     end
   end
@@ -76,7 +80,7 @@ class MusicsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def music_params
       #params[:music].require(:title, :path).permit(:title, :artist, :album, :path, :cover)
-      
+
       params[:music].permit(:title, :artist, :album, :path, :cover)
     end
 end

@@ -1,3 +1,66 @@
+var Player = new function () {}
+
+Player.setContent = function (content) {
+	$('#ma-player-content').html(content);
+}
+
+Player.initUploadButton = function () {
+	$('#ma-player-sidebar-menu-upload').click(function () {
+		$.ajax({
+				url: "musics/new",
+				beforeSend: function (xhr) {
+					xhr.overrideMimeType("text/plain; charset=x-user-defined");
+				}
+			})
+			.done(function (data) {
+				//$('#ma-player-content').html(data);
+				Player.setContent(data);
+				$('#new_music').submit(function (event) {
+					// Stop form from submitting normally
+					event.preventDefault();
+
+					$.ajax({
+						url: $(this).attr('action'),
+						type: 'POST',
+						data: new FormData(this),
+						dataType: 'json',
+						processData: false,
+						contentType: false,
+					}).done(function (data) {
+						console.log(data.status);
+						if (data.status == 'created') {
+							$.ajax({
+								url: "/music/" + data.message.id,
+							}).done(function (data) {
+								$('#ma-player-content').html(data);
+							});
+						} else {
+							$('#error_explanation').removeClass('hidden');
+							$('#error_explanation_list').empty();
+							$.each(data.message, function (index, value) {
+								$('#error_explanation_list').append('<li>' + value + '</li>');
+							});
+						}
+					});
+				});
+			});
+	});
+}
+
+Player.initSongsButton = function () {
+	$('#ma-player-sidebar-menu-songs').click(function () {
+		$.ajax({
+				url: "musics",
+				beforeSend: function (xhr) {
+					xhr.overrideMimeType("text/plain; charset=x-user-defined");
+				}
+			})
+			.done(function (data) {
+				Player.setContent(data);
+			});
+	});
+}
+
 var Bounds = function (x1, y1, x2, y2) {
 	this.x1 = x1;
 	this.y1 = y1;
@@ -99,6 +162,10 @@ ProgressBarManager.init(
 );
 
 
+//
+// Window / Document section
+//
+
 $(window).resize(function () {
 	ProgressBarManager.recalcBounds();
 	ProgressBarManager.updateHandler();
@@ -107,4 +174,7 @@ $(window).resize(function () {
 $(document).ready(function () {
 	ProgressBarManager.recalcBounds();
 	ProgressBarManager.updateHandler();
+
+	Player.initSongsButton();
+	Player.initUploadButton();
 });
