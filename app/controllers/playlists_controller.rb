@@ -7,15 +7,16 @@ class PlaylistsController < ApplicationController
   # GET /playlists.json
   def index
     @playlists = Playlist.all
+    @playlistsByUser=Playlist.playlistsByUser current_user.id
   end
 
   # GET /playlists/1
   # GET /playlists/1.json
   def show
     @playlist = Playlist.find(params[:id])
-    @userId = Playlist.find(params[:id]).user_id
+    @userId = Playlist.user params[:id]
     @user = User.find(@userId)
-    @musicsPlaylists = MusicPlaylist.where("playlist_id=?", params[:id])
+    @musicsPlaylists = MusicPlaylist.allMusic params[:id]
   end
 
   # GET /playlists/new
@@ -75,11 +76,6 @@ class PlaylistsController < ApplicationController
     end
   end
   
-  def count
-    @nbPlaylist = Playlist.count;
-    render json: nbPlaylist
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_playlist
@@ -91,7 +87,7 @@ class PlaylistsController < ApplicationController
     end
 
   def check_permission
-    @userId = Playlist.find(params[:id]).user_id
+    @userId = Playlist.userId param[:id]
     @user = User.find(@userId)
     redirect_to root_path, notice: 'You dont have enough permissions to be here' unless @user==current_user
   end

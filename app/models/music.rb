@@ -22,5 +22,22 @@ class Music < ActiveRecord::Base
 	has_many :comments, :dependent => :delete_all
 
   letsrate_rateable "autism_friendly", "overall"
+  
+  def self.lastSong()
+    self.all.order("created_at DESC")
+  end
+  
+  def self.songsByUser(param)
+    self.where(user_id="?", param)
+  end
+  
+  def self.userId(param)
+    self.find(param).user_id
+  end
+  
+  def self.count(param)
+    @nbMusic=Music.where(user_id="?", param).count;
+    render json: nbMusic
+  end
 
 end

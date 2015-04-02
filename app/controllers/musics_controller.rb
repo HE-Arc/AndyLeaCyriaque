@@ -1,11 +1,13 @@
 class MusicsController < ApplicationController
   before_action :set_music, only: [:show, :edit, :update, :destroy]
+  #before_filter :check_permission, only: [:edit, :update, :destroy]
   layout false
 
   # GET /musics
   # GET /musics.json
   def index
     @musics = Music.all
+    @musicsByUser=Music.songsByUser current_user.id
   end
 
   # GET /musics/1
@@ -71,10 +73,10 @@ class MusicsController < ApplicationController
     end
   end
   
-  def count
-    @nbMusic = Music.count;
-    render json: nbMusic
+  def last
+    @lastSongs = Music.lastSong
   end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_music
@@ -84,7 +86,13 @@ class MusicsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def music_params
       #params[:music].require(:title, :path).permit(:title, :artist, :album, :path, :cover)
-
       params[:music].permit(:title, :artist, :album, :path, :cover)
+    end
+  
+  # Check user permission for the actions
+    def check_permission
+      @userId = Music.userId params[:id]
+      @user = User.find(@userId)
+      redirect_to root_path, notice: 'You dont have enough permissions to be here' unless @user==current_user
     end
 end
