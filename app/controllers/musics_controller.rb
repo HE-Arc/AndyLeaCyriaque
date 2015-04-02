@@ -1,6 +1,6 @@
 class MusicsController < ApplicationController
   before_action :set_music, only: [:show, :edit, :update, :destroy]
-  #layout false
+  layout false
 
   # GET /musics
   # GET /musics.json

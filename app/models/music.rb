@@ -14,7 +14,7 @@ class Music < ActiveRecord::Base
 
 	has_attached_file :path
 	validates_attachment_presence :path
-	validates_attachment_content_type :path, :content_type => [ 'application/mp3', 'application/x-mp3', 'audio/mpeg', 'audio/mp3', 'audio/ogg', 'audio/flac' ]
+	validates_attachment_content_type :path, :content_type => [ 'application/mp3', 'application/x-mp3', 'audio/mpeg', 'audio/mp3', 'audio/ogg', 'application/ogg', 'video/ogg', 'audio/flac' ]
 	validates_attachment_size :path, :less_than => 20.megabytes
 
 	has_many :music_playlists
