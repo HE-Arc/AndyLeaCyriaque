@@ -11,6 +11,7 @@ var Player = new function() {
     // Variables
     //
 
+    this.buttonSidebarPlaylists = '#ma-player-sidebar-menu-playlists';
     this.buttonSidebarSongs = '#ma-player-sidebar-menu-songs';
     this.buttonSidebarUpload = '#ma-player-sidebar-menu-upload';
     this.content = '#ma-player-content';
@@ -33,6 +34,7 @@ var Player = new function() {
      * Initialization
      */
     this.initialize = function() {
+        this.connect(this.buttonSidebarPlaylists, 'click', this.showPlaylists);
         this.connect(this.buttonSidebarSongs, 'click', this.showSongs);
         this.connect(this.buttonSidebarUpload, 'click', this.showUpload);
     }
@@ -55,8 +57,11 @@ var Player = new function() {
             });
     }
 
+    this.showPlaylists = function() {
+        Player.load('playlists', {});
+    }
     this.showSongs = function() {
-        Player.load('musics', Musics.new);
+        Player.load('musics', {});
     }
     this.showUpload = function() {
         Player.load('musics/new', Musics.new);
