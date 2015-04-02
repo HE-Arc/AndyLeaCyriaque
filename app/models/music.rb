@@ -17,9 +17,9 @@ class Music < ActiveRecord::Base
 	validates_attachment_content_type :path, :content_type => [ 'application/mp3', 'application/x-mp3', 'audio/mpeg', 'audio/mp3', 'audio/ogg', 'application/ogg', 'video/ogg', 'audio/flac' ]
 	validates_attachment_size :path, :less_than => 20.megabytes
 
-	has_many :music_playlists
+	has_many :music_playlists, :dependent => :delete_all
   has_many :playlists, :through => :music_playlists
-	has_many :comments
+	has_many :comments, :dependent => :delete_all
 
   letsrate_rateable "autism_friendly", "overall"
 

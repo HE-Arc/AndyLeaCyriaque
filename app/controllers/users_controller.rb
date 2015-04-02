@@ -24,6 +24,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    
+    sanitize_filename(params[:avatar])
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -76,5 +78,16 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       redirect_to root_path, notice: 'You dont have enough permissions to be here' unless @user==current_user
     end
+  
+    def sanitize_filename(filename)
+    filename.strip.tap do |name|
+      # NOTE: File.basename doesn't work right with Windows paths on Unix
+      # get only the filename, not the whole path
+      name.sub! /\A.*(\\|\/)/, ''
+      # Finally, replace all non alphanumeric, underscore
+      # or periods with underscore
+      name.gsub! /[^\w\.\-]/, '_'
+  end
+end
   
 end

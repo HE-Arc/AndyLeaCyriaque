@@ -70,7 +70,11 @@ class MusicsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def count
+    @nbMusic = Music.count;
+    render json: nbMusic
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_music

@@ -59,7 +59,7 @@ var Player = new function() {
     }
 
     this.showPlaylists = function() {
-        Player.load('playlists');
+        Player.load('playlists', Playlists.show);
     }
     this.showSongs = function() {
         Player.load('musics');
