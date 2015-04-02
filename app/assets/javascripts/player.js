@@ -53,15 +53,16 @@ var Player = new function() {
             })
             .done(function(data) {
                 $(Player.content).html(data);
-                callbackOnDone();
+                if (typeof callbackOnDone !== 'undefined')
+                    callbackOnDone();
             });
     }
 
     this.showPlaylists = function() {
-        Player.load('playlists', {});
+        Player.load('playlists');
     }
     this.showSongs = function() {
-        Player.load('musics', {});
+        Player.load('musics');
     }
     this.showUpload = function() {
         Player.load('musics/new', Musics.new);
