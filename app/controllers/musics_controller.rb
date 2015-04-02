@@ -71,6 +71,12 @@ class MusicsController < ApplicationController
     end
   end
   
+  def search_music
+    #@music = Music.where(Music.title="?",params[:searchParam])
+    @music = Music.search(params[:searchParam])
+    render 'music/show'
+  end
+  
   def count
     @nbMusic = Music.count;
     render json: nbMusic
