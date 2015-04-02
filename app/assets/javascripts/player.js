@@ -1,5 +1,6 @@
 //= require utils
 //= require musics
+//= require playlists
 
 /**
  * Player object
@@ -34,9 +35,9 @@ var Player = new function() {
      * Initialization
      */
     this.initialize = function() {
-        this.connect(this.buttonSidebarPlaylists, 'click', this.showPlaylists);
-        this.connect(this.buttonSidebarSongs, 'click', this.showSongs);
-        this.connect(this.buttonSidebarUpload, 'click', this.showUpload);
+        this.connect(this.buttonSidebarPlaylists, 'click', Playlists.show);
+        this.connect(this.buttonSidebarSongs, 'click', Musics.index);
+        this.connect(this.buttonSidebarUpload, 'click', Musics.new);
     }
 
     /**
@@ -56,16 +57,6 @@ var Player = new function() {
                 if (typeof callbackOnDone !== 'undefined')
                     callbackOnDone();
             });
-    }
-
-    this.showPlaylists = function() {
-        Player.load('playlists', Playlists.show);
-    }
-    this.showSongs = function() {
-        Player.load('musics');
-    }
-    this.showUpload = function() {
-        Player.load('musics/new', Musics.new);
     }
 
 }
