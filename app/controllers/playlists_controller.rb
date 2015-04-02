@@ -14,7 +14,7 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.find(params[:id])
     @userId = Playlist.find(params[:id]).user_id
     @user = User.find(@userId)
-    @musicsPlaylists = MusicPlaylist.where("playlist_id=?", params[:id])
+    @musicsPlaylists = MusicPlaylist.where("playlist_id=?", params[:id]) 
   end
 
   # GET /playlists/new

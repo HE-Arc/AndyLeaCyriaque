@@ -9,6 +9,7 @@
     <source src=<%=@song.path.url[0...-11] %> type="audio/mpeg">  
     </audio></p>
   <%end%>
+ 
   <% if @user == current_user %>  
     <%= link_to 'Edit', edit_playlist_path(@playlist) %>
     <%= link_to 'Destroy', @playlist, method: :delete, data: { confirm: 'Are you sure?' } %>
