@@ -1,180 +1,194 @@
-var Player = new function () {}
+//= require utils
+//= require musics
 
-Player.setContent = function (content) {
-	$('#ma-player-content').html(content);
+/**
+ * Player object
+ * Manages the player's interface.
+ */
+var Player = new function() {
+
+    //
+    // Variables
+    //
+
+    this.buttonSidebarSongs = '#ma-player-sidebar-menu-songs';
+    this.buttonSidebarUpload = '#ma-player-sidebar-menu-upload';
+    this.content = '#ma-player-content';
+
+    //
+    // Methods
+    //
+
+    /**
+     * Connect a function to an element's event.
+     * @param  {string}   object   HTML element's ID
+     * @param  {string}   event    Event (eg. click)
+     * @param  {function} callback Callback function
+     */
+    this.connect = function(object, event, callback) {
+        $(object).on(event, callback);
+    }
+
+    /**
+     * Initialization
+     */
+    this.initialize = function() {
+        this.connect(this.buttonSidebarSongs, 'click', this.showSongs);
+        this.connect(this.buttonSidebarUpload, 'click', this.showUpload);
+    }
+
+    /**
+     * Load a route and show it in the content container.
+     * @param  {string} path           Route
+     * @param  {function} callbackOnDone Function called when the request is done.
+     */
+    this.load = function(path, callbackOnDone) {
+        $.ajax({
+                url: path,
+                beforeSend: function(xhr) {
+                    xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                }
+            })
+            .done(function(data) {
+                $(Player.content).html(data);
+                callbackOnDone();
+            });
+    }
+
+    this.showSongs = function() {
+        Player.load('musics', Musics.new);
+    }
+    this.showUpload = function() {
+        Player.load('musics/new', Musics.new);
+    }
+
 }
 
-Player.initUploadButton = function () {
-	$('#ma-player-sidebar-menu-upload').click(function () {
-		$.ajax({
-				url: "musics/new",
-				beforeSend: function (xhr) {
-					xhr.overrideMimeType("text/plain; charset=x-user-defined");
-				}
-			})
-			.done(function (data) {
-				//$('#ma-player-content').html(data);
-				Player.setContent(data);
-				$('#new_music').submit(function (event) {
-					// Stop form from submitting normally
-					event.preventDefault();
+/**
+ * ProgressBar manager
+ */
+var ProgressBarManager = new function() {
 
-					$.ajax({
-						url: $(this).attr('action'),
-						type: 'POST',
-						data: new FormData(this),
-						dataType: 'json',
-						processData: false,
-						contentType: false,
-					}).done(function (data) {
-						console.log(data.status);
-						if (data.status == 'created') {
-							$.ajax({
-								url: "/music/" + data.message.id,
-							}).done(function (data) {
-								$('#ma-player-content').html(data);
-							});
-						} else {
-							$('#error_explanation').removeClass('hidden');
-							$('#error_explanation_list').empty();
-							$.each(data.message, function (index, value) {
-								$('#error_explanation_list').append('<li>' + value + '</li>');
-							});
-						}
-					});
-				});
-			});
-	});
-}
+    //
+    // Variables
+    //
 
-Player.initSongsButton = function () {
-	$('#ma-player-sidebar-menu-songs').click(function () {
-		$.ajax({
-				url: "musics",
-				beforeSend: function (xhr) {
-					xhr.overrideMimeType("text/plain; charset=x-user-defined");
-				}
-			})
-			.done(function (data) {
-				Player.setContent(data);
-			});
-	});
-}
+    this.bar = $('#ma-player-progressbar-bar');
+    this.container = $('#ma-player-progressbar');
+    this.handler = $('#ma-player-progressbar-handler');
 
-var Bounds = function (x1, y1, x2, y2) {
-	this.x1 = x1;
-	this.y1 = y1;
-	this.x2 = x2;
-	this.y2 = y2;
+    this.bounds = new Bounds(0, 0, 0, 0);
 
-	this.toArray = function () {
-		return [x1, y1, x2, y2];
-	}
-}
+    var value = 0;
+    var size = 100;
 
-var ProgressBarManager = new function () {
-	this.bar = null;
-	this.bounds = new Bounds(0, 0, 0, 0);
-	this.container = null;
-	this.handler = null;
-	var value = 0;
-	var size = 100;
+    //
+    // Methods
+    //
 
-	this.init = function (container, bar, handler) {
-		this.bar = bar;
-		this.container = container;
-		this.handler = handler;
+	/**
+     * Initialization
+     */
+    this.initialize = function() {
 
-		this.recalcBounds();
+        var bar = ProgressBarManager.bar;
+        var container = ProgressBarManager.container;
+        var handler = ProgressBarManager.handler;
 
-		// Make the handler draggable.
-		this.handler.draggable({
-			axis: 'x',
-			containment: [
-				this.bounds.x1,
-				this.bounds.y1,
-				this.bounds.x2,
-				this.bounds.y2
-			],
-			drag: function (event, ui) {
-				var left = handler.position().left - container.position().left + (handler.width() / 2);
-				var width = container.width();
+        this.recalcBounds();
 
-				value = left / width * size;
+        // Make the handler draggable.
+        this.handler.draggable({
+            axis: 'x',
+            containment: [
+                this.bounds.x1,
+                this.bounds.y1,
+                this.bounds.x2,
+                this.bounds.y2
+            ],
+            drag: function(event, ui) {
+                var left = handler.position().left - container.position().left + (handler.width() / 2);
+                var width = container.width();
 
-				bar.css('width', value + '%');
-				bar.attr('aria-valuenow', value);
-			}
-		});
+                value = left / width * size;
 
-		this.container.click(function (e) {
-			var value = (e.pageX - container.position().left) / container.width() * size;
-			ProgressBarManager.setValue(value);
-		});
-	}
+                bar.css('width', value + '%');
+                bar.attr('aria-valuenow', value);
+            }
+        });
 
-	this.recalcBounds = function () {
-		var startX = this.container.position().left - (this.handler.width() / 2);
-		var endX = startX + this.container.width();
-		var startY = this.container.position().top; - (this.handler.height() / 4);
+        this.container.click(function(e) {
+            var value = (e.pageX - container.position().left) / container.width() * size;
+            ProgressBarManager.setValue(value);
+        });
+    }
 
-		this.bounds.x1 = startX;
-		this.bounds.y1 = startY;
-		this.bounds.x2 = endX;
-		this.bounds.y2 = startY;
-	}
+	/**
+	 * Recompute the progress bar's boundaries.
+	 */
+    this.recalcBounds = function() {
+        var startX = this.container.position().left - (this.handler.width() / 2);
+        var endX = startX + this.container.width();
+        var startY = this.container.position().top; - (this.handler.height() / 4);
 
-	this.setValue = function (val) {
-		this.value = val;
+        this.bounds.x1 = startX;
+        this.bounds.y1 = startY;
+        this.bounds.x2 = endX;
+        this.bounds.y2 = startY;
+    }
 
-		this.bar.css('width', this.value + '%');
-		this.bar.attr('aria-valuenow', this.value);
+	/**
+	 * Change the progress bar's value.
+	 * @param {float} val Value from 0 to 100
+	 */
+    this.setValue = function(val) {
+        this.value = val;
 
-		var left = this.container.position().left + this.bar.width();
-		this.handler.css({
-			left: left - (this.handler.width() / 2),
-			top: this.container.position().top - (this.handler.height() / 4)
-		});
-	}
+        this.bar.css('width', this.value + '%');
+        this.bar.attr('aria-valuenow', this.value);
 
-	this.updateHandler = function () {
-		var left = this.container.position().left + this.bar.width();
-		this.handler.css({
-			left: left - (this.handler.width() / 2),
-			top: this.container.position().top - (this.handler.height() / 4)
-		});
-		this.handler.draggable(
-			"option",
-			"containment", [
-				this.bounds.x1,
-				this.bounds.y1,
-				this.bounds.x2,
-				this.bounds.y2
-		]);
-	}
+        var left = this.container.position().left + this.bar.width();
+        this.handler.css({
+            left: left - (this.handler.width() / 2),
+            top: this.container.position().top - (this.handler.height() / 4)
+        });
+    }
+
+	/**
+	 * Update handler's position.
+	 */
+    this.updateHandler = function() {
+        var left = this.container.position().left + this.bar.width();
+        this.handler.css({
+            left: left - (this.handler.width() / 2),
+            top: this.container.position().top - (this.handler.height() / 4)
+        });
+        this.handler.draggable(
+            "option",
+            "containment", [
+                this.bounds.x1,
+                this.bounds.y1,
+                this.bounds.x2,
+                this.bounds.y2
+            ]);
+    }
 };
-
-
-ProgressBarManager.init(
-	$('#ma-player-progressbar'),
-	$('#ma-player-progressbar-bar'),
-	$('#ma-player-progressbar-handler')
-);
 
 
 //
 // Window / Document section
 //
 
-$(window).resize(function () {
-	ProgressBarManager.recalcBounds();
-	ProgressBarManager.updateHandler();
+$(window).resize(function() {
+    ProgressBarManager.recalcBounds();
+    ProgressBarManager.updateHandler();
 });
 
-$(document).ready(function () {
-	ProgressBarManager.recalcBounds();
-	ProgressBarManager.updateHandler();
+$(document).ready(function() {
+    ProgressBarManager.initialize();
+    ProgressBarManager.recalcBounds();
+    ProgressBarManager.updateHandler();
 
-	Player.initSongsButton();
-	Player.initUploadButton();
+    ProgressBarManager.initialize();
+    Player.initialize();
 });
