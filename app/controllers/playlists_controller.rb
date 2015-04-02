@@ -1,6 +1,7 @@
 class PlaylistsController < ApplicationController
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
   before_filter :check_permission, only: [:edit, :update, :destroy]
+  layout false
 
   # GET /playlists
   # GET /playlists.json
@@ -14,7 +15,7 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.find(params[:id])
     @userId = Playlist.find(params[:id]).user_id
     @user = User.find(@userId)
-    @musicsPlaylists = MusicPlaylist.where("playlist_id=?", params[:id]) 
+    @musicsPlaylists = MusicPlaylist.where("playlist_id=?", params[:id])
   end
 
   # GET /playlists/new
@@ -25,7 +26,7 @@ class PlaylistsController < ApplicationController
   # GET /playlists/1/edit
   def edit
   end
-  
+
   #GET /playlists/id_user
   def indexUser
     @user = User.find(params[:id])
@@ -80,13 +81,13 @@ class PlaylistsController < ApplicationController
       @playlist = Playlist.find(params[:id])
     end
 
-  def get_params 
+  def get_params
     params.require(:playlist).permit(:user_id, :nom, :content)
     end
-  
+
   def check_permission
     @userId = Playlist.find(params[:id]).user_id
     @user = User.find(@userId)
     redirect_to root_path, notice: 'You dont have enough permissions to be here' unless @user==current_user
-  end 
+  end
 end
