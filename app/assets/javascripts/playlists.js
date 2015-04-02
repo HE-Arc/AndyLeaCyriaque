@@ -4,20 +4,24 @@
 var Playlists = new function() {
 
     this.new = function() {
-        $('#back').click(function(event) {
-            // Stop form from submitting normally
-            event.preventDefault();
-            Player.load("/playlists");
+        Player.load("playlists/new", function() {
+            $('#back').click(function(event) {
+                // Stop form from submitting normally
+                event.preventDefault();
+                Playlists.show();
+            });
         });
     }
-    // musics/index
+
+    // playlists
     this.show = function() {
-        $('#new_playlist').click(function(event) {
-            // Stop form from submitting normally
-            event.preventDefault();
-            Player.load("playlists/new");
-            Playlists.new();
+        Player.load("playlists", function() {
+            $('#new_playlist').click(function(event) {
+                // Stop form from submitting normally
+                event.preventDefault();
+                Playlists.new();
+            });
         });
-      
     }
+
 }
