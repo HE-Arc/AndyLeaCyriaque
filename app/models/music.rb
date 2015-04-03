@@ -36,7 +36,7 @@ class Music < ActiveRecord::Base
   end
   
   def self.count(param)
-    @nbMusic=self.where("user_id=?", param).count;
+    @nbMusic=Music.where(user_id="?", param).count;
     render json: nbMusic
   end
 
@@ -44,10 +44,10 @@ class Music < ActiveRecord::Base
     #search_condition = "%" + search + "%"
     #self.find(:all, :conditions => ['title LIKE ? OR description LIKE ?', "%#{searchParam}%"])
     t = self.arel_table
-    self.where(t[:title].matches("%#{searchParam}%")).all
+    self.where(t[:title].matches("%#{searchParam}%").or(t[:artist].matches("%#{searchParam}%"))).all
     #where("title LIKE ?", "%#{searchParam}%")
     #where("artist LIKE ?", "%#{searchParam}%")
     #render 'index'
-  end
+    end
   
 end
