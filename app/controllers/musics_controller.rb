@@ -35,6 +35,30 @@ class MusicsController < ApplicationController
         render 'index', layout: "player"
     end
 
+    # GET /musics/new
+    def new
+      @music = Music.new
+    end
+  
+   # POST /musics
+   # POST /musics.json
+   def create
+      @music = Music.new(music_params)
+      @user = current_user
+      respond_to do |format|
+       if @music.save
+         @user.musics<<@music
+          format.html { redirect_to @music, notice: 'Your song was successfully created.' }
+          #format.json { render :show, status: :created, location: @music }
+          #format.html { render :show }
+          format.json { render json: { :status => :created, :message => @music}, location: @music }
+        else
+          format.html { render :new }
+          #format.json { render json: @music.errors.full_messages, status: :unprocessable_entity }
+          format.json { render json: { :status => :unprocessable_entity, :message => @music.errors.full_messages } }
+        end
+      end
+  end
 
     # GET /musics/1
     # GET /musics/1.json
@@ -88,8 +112,8 @@ class MusicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def music_params
-        #params[:music].require(:title, :path).permit(:title, :artist, :album, :path, :cover)
-        params[:music].permit(:title, :artist, :album, :path, :cover)
+      #params[:music].require(:title, :path).permit(:title, :artist, :album, :path, :cover)
+      params[:music].permit(:title, :artist, :album, :path, :cover, :style)
     end
 
     # Check user permission for the actions
