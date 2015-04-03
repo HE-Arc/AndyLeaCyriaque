@@ -36,7 +36,7 @@ class Music < ActiveRecord::Base
   end
   
   def self.count(param)
-    @nbMusic=Music.where(user_id="?", param).count;
+    @nbMusic=Music.where("user_id=?", param).count;
     render json: nbMusic
   end
 
@@ -48,6 +48,6 @@ class Music < ActiveRecord::Base
     #where("title LIKE ?", "%#{searchParam}%")
     #where("artist LIKE ?", "%#{searchParam}%")
     #render 'index'
-    end
+  end
   
 end
