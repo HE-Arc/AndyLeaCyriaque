@@ -42,7 +42,7 @@ class Music < ActiveRecord::Base
 		#search_condition = "%" + search + "%"
 		#self.find(:all, :conditions => ['title LIKE ? OR description LIKE ?', "%#{searchParam}%"])
 		t = self.arel_table
-		self.where(t[:title].matches("%#{searchParam}%").or(t[:artist].matches("%#{searchParam}%"))).all
+		self.where(t[:title].matches("%#{searchParam}%").or(t[:artist].matches("%#{searchParam}%")).or(t[:style].matches("%#{searchParam}%"))).all
 		#where("title LIKE ?", "%#{searchParam}%")
 		#where("artist LIKE ?", "%#{searchParam}%")
 		#render 'index'

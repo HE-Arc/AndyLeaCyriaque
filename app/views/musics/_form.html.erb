@@ -37,6 +37,11 @@
 </p>
 
 <p>
+  <%= f.label :style %>
+  <%= f.select :style, options_for_select([['Pop','pop'],['Rock','rock'],['Classical','classical'],['Rap','rap'],['OST','ost'],['Rnb','rnb'],['Metal','metal'],['Dance','dance']]) %>
+</p>
+
+<p>
 	<%= f.label :track %>
 	<%= f.file_field :path %>
 </p>
