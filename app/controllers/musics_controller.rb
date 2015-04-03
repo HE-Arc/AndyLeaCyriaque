@@ -17,18 +17,20 @@ class MusicsController < ApplicationController
 
 
     def indexUser
+        @user = current_user
         @musics=Music.songsByUser current_user.id
-        render 'index'
+        render 'index', layout: "player"
     end
 
     def indexLast
         @musics = Music.lastSong
-        render 'index'
+        render 'index', layout: "player"
     end
 
     def search
+        @user = current_user
         @musics = Music.search params[:search]#.order("created_at DESC")
-        render 'index'
+        render 'index', layout: "player"
     end
 
 

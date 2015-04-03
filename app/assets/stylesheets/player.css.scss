@@ -13,6 +13,12 @@ body,
 	width: 100%;
 }
 
+table,
+tr,
+td {
+	vertical-align: middle !important;
+}
+
 .ma-player-body {
 	position: absolute;
 	/*padding-top: 51px;*/
@@ -126,4 +132,21 @@ body,
 
 #ma-player-progressbar {
 	cursor: pointer;
+}
+
+.ma-player-list-cover,
+.ma-player-list-play {
+	border-radius: 0;
+	height: 3em;
+	width: 3em;
+}
+
+.ma-player-table-tr .ma-player-list-cover,
+.ma-player-table-tr:hover .ma-player-list-play {
+	display: block;
+}
+
+.ma-player-table-tr .ma-player-list-play,
+.ma-player-table-tr:hover .ma-player-list-cover {
+	display: none;
 }
