@@ -18,14 +18,14 @@ class PlayerController < ApplicationController
 		render 'playlists/show'
 	end
 
-   def self.search(searchParam)
-   if search
-     Music.find(:all, :conditions => ['title LIKE ?', "%#{searchParam}%"])
-   else
-     Music.find(:all)
-   end
- end
-  
+	def self.search(searchParam)
+		if search
+			Music.find(:all, :conditions => ['title LIKE ?', "%#{searchParam}%"])
+		else
+			Music.find(:all)
+		end
+	end
+
 	def show_profile
 		@user = User.find_by(login: params[:login]) #User.find(params[:login])
 	end
