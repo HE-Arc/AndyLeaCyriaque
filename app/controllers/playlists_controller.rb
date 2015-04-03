@@ -11,7 +11,6 @@ class PlaylistsController < ApplicationController
 
     def indexUser
         @playlists=Playlist.playlistsByUser current_user.id
-        render 'index'
 
         respond_to do |format|
             @user = current_user
