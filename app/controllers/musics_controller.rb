@@ -1,4 +1,5 @@
 class MusicsController < ApplicationController
+
     before_action :set_music, only: [:show, :edit, :update, :destroy]
     before_filter :check_permission, only: [:edit, :update, :destroy]
     layout false
@@ -12,7 +13,7 @@ class MusicsController < ApplicationController
         # @musics = Music.search params[:search]#.order("created_at DESC")
         #else
         # @musics = Music.all#.order('created_at DESC')
-
+        #end
     end
 
 
@@ -23,6 +24,7 @@ class MusicsController < ApplicationController
     end
 
     def indexLast
+        @user = current_user
         @musics = Music.lastSong
         render 'index', layout: "player"
     end
@@ -51,35 +53,7 @@ class MusicsController < ApplicationController
         respond_to do |format|
             format.json { render json: { :infos => @music, :path => @music.path.url[0...-11] } }
         end
-    end
 
-    # GET /musics/new
-    def new
-        @music = Music.new
-    end
-
-    # GET /musics/1/edit
-    def edit
-    end
-
-    # POST /musics
-    # POST /musics.json
-    def create
-        @music = Music.new(music_params)
-        @user = current_user
-        respond_to do |format|
-            if @music.save
-                @user.musics<<@music
-                format.html { redirect_to @music, notice: 'Your song was successfully created.' }
-                #format.json { render :show, status: :created, location: @music }
-                #format.html { render :show }
-                format.json { render json: { :status => :created, :message => @music}, location: @music }
-            else
-                format.html { render :new }
-                #format.json { render json: @music.errors.full_messages, status: :unprocessable_entity }
-                format.json { render json: { :status => :unprocessable_entity, :message => @music.errors.full_messages } }
-            end
-        end
     end
 
     # PATCH/PUT /musics/1

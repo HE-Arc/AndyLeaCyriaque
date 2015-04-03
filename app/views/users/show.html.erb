@@ -1,7 +1,22 @@
 <p id="notice"><%= notice %></p>
-<%= @user.login %>
-<% if @user == current_user %>
-  <td><%= link_to 'Edit', edit_user_registration_path %></td>
-  <td><%= link_to 'Destroy',@user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-<% end %>
-<%= link_to 'Back', users_path %>
+<div>
+    <%= image_tag(@user.avatar.url, class: "img-responsive ma-player-sidebar-avatar") %>
+    <%= @user.login %>
+</div>
+<div>
+    <%= @user.firstname %>
+    <%= @user.lastname %>
+</div>
+<div>
+    <p>
+        <%= @user.age%>
+        years old
+    </p>
+</div>
+<div>
+    <% if @user == current_user %>
+    <td><%= link_to 'Edit', edit_user_registration_path %></td>
+    <td><%= link_to 'Destroy',@user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+    <%= link_to 'Back', users_path %>
+</div>
