@@ -8,7 +8,7 @@ var Playlists = new function() {
             $('#back').click(function(event) {
                 // Stop form from submitting normally
                 event.preventDefault();
-                Playlists.show();
+                Playlists.index();
             });
         });
     }
