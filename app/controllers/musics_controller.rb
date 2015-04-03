@@ -8,11 +8,17 @@ class MusicsController < ApplicationController
   def index
     @musics = Music.all
     
-  end
+   if params[:search]
+      @musics = Music.search params[:search]#.order("created_at DESC")
+    else
+      @musics = Music.all#.order('created_at DESC')
+   end
+    
   
   def indexUser
     @musics=Music.songsByUser current_user.id
     render 'index'
+
   end
     
   def indexLast
@@ -20,6 +26,12 @@ class MusicsController < ApplicationController
     render 'index'
   end
 
+
+  end
+  
+  def search
+    @musics = Music.search params[:search]#.order("created_at DESC")
+  
   # GET /musics/1
   # GET /musics/1.json
   def show
@@ -93,7 +105,7 @@ class MusicsController < ApplicationController
     @music = Music.search(params[:searchParam])
     render 'music/show'
   end
-  
+    
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_music

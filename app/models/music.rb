@@ -40,4 +40,12 @@ class Music < ActiveRecord::Base
     render json: nbMusic
   end
 
+  def self.search(searchParam)
+    search_condition = "%" + search + "%"
+    Music.find(:all, :conditions => ['title LIKE ? OR description LIKE ?', "%#{searchParam}%"])
+    #where("title LIKE ?", "%#{searchParam}%")
+    #where("artist LIKE ?", "%#{searchParam}%")
+    render 'index'
+ end
+  
 end
