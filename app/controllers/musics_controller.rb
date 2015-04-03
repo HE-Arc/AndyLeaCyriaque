@@ -6,14 +6,14 @@ class MusicsController < ApplicationController
   # GET /musics
   # GET /musics.json
   def index
-    @musics = Music.all
+    #@musics = Music.all
     
    #if params[:search]
-     # @musics = Music.search params[:search]#.order("created_at DESC")
-    #else
-     # @musics = Music.all#.order('created_at DESC')
-   end
-    
+     #@musics = Music.search params[:search]#.order("created_at DESC")
+   #else
+     #@musics = Music.all#.order('created_at DESC')
+   #end
+  end  
   
   def indexUser
     @musics=Music.songsByUser current_user.id
