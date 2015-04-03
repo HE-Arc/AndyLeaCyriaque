@@ -35,7 +35,7 @@ var Player = new function() {
      * Initialization
      */
     this.initialize = function() {
-        this.connect(this.buttonSidebarPlaylists, 'click', Playlists.show);
+        this.connect(this.buttonSidebarPlaylists, 'click', Playlists.index);
         this.connect(this.buttonSidebarSongs, 'click', Musics.index);
         this.connect(this.buttonSidebarUpload, 'click', Musics.new);
     }
