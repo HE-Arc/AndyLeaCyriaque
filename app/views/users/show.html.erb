@@ -8,7 +8,10 @@
   <%= @user.lastname %>
 </div>
 <div>
-  <%= @user.birthday %>
+  <p>
+    <%= @user.age%>
+    years old
+  </p>
 </div>
 <div>
 <% if @user == current_user %>

@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
 
   letsrate_rater
   
+  def age()
+    ((Date.today - self.birthday) / 365).floor
+  end
+  
 end
