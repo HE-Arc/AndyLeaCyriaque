@@ -22,10 +22,18 @@
 				<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 				</li>
 				<% end %>
-			</ul>
-			<form class="navbar-form navbar-right">
-				<input type="text" class="form-control" placeholder="Search...">
-			</form>
+			</ul>   
+      <form class="navbar-form navbar-right">
+       <%= form_tag :controller => 'musics', :action => 'search', :method => 'get' %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search" %>
+        <%= submit_tag "Search", :name => nil %>
+      </form>    
+<!--
+    	<form class="navbar-form navbar-right">
+<input type="text" class="form-control" placeholder="Search...">
+</form>
+-->
+			
 		</div>
 	</div>
 </nav>
