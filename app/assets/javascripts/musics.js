@@ -15,6 +15,7 @@ var Musics = new function() {
                 // Stop form from submitting normally
                 event.preventDefault();
 
+                // Handle data submission
                 $.ajax({
                     url: $(this).attr('action'),
                     type: 'POST',

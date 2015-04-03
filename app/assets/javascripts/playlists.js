@@ -14,7 +14,7 @@ var Playlists = new function() {
     }
 
     // playlists
-    this.show = function() {
+    this.index = function() {
         Player.load("playlists", function() {
             $('#new_playlist').click(function(event) {
                 // Stop form from submitting normally
