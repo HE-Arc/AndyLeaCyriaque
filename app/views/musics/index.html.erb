@@ -17,10 +17,8 @@
            <source src=<%=music.path.url[0...-11] %> type="audio/mpeg">  
           </audio>
         
-        </td>
+        </td>      
         <td><%= link_to 'Show', music %></td>
-        <td><%= link_to 'Edit', edit_music_path(music) %></td>
-        <td><%= link_to 'Destroy', music, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

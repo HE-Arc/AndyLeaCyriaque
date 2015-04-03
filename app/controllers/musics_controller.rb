@@ -1,6 +1,6 @@
 class MusicsController < ApplicationController
   before_action :set_music, only: [:show, :edit, :update, :destroy]
-  #before_filter :check_permission, only: [:edit, :update, :destroy]
+  before_filter :check_permission, only: [:edit, :update, :destroy]
   layout false
 
   # GET /musics
@@ -13,9 +13,13 @@ class MusicsController < ApplicationController
   # GET /musics/1
   # GET /musics/1.json
   def show
+    @userId = Music.userId params[:id]
+    
     @music = Music.find(params[:id])
+    
     @comments = @music.comments
     @comment = @music.comments.build
+    
     @playlists = Playlist.all
     @musicPlaylists = @music.music_playlists
     @musicPlaylist = @music.music_playlists.build
@@ -34,9 +38,10 @@ class MusicsController < ApplicationController
   # POST /musics.json
   def create
     @music = Music.new(music_params)
-
+    @user = current_user
     respond_to do |format|
       if @music.save
+        @user.musics<<@music
         format.html { redirect_to @music, notice: 'Your song was successfully created.' }
         #format.json { render :show, status: :created, location: @music }
 		#format.html { render :show }
@@ -98,7 +103,7 @@ class MusicsController < ApplicationController
   # Check user permission for the actions
     def check_permission
       @userId = Music.userId params[:id]
-      @user = User.find(@userId)
-      redirect_to root_path, notice: 'You dont have enough permissions to be here' unless @user==current_user
+
+      redirect_to root_path, notice: 'You dont have enough permissions to be here' unless @user.id==current_user.id
     end
 end

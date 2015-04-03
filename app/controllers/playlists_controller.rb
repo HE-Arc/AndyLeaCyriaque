@@ -14,8 +14,9 @@ class PlaylistsController < ApplicationController
   # GET /playlists/1.json
   def show
     @playlist = Playlist.find(params[:id])
-    @userId = Playlist.user params[:id]
-    @user = User.find(@userId)
+   
+    @userId = Playlist.userId params[:id]
+
     @musicsPlaylists = MusicPlaylist.allMusic params[:id]
   end
 
@@ -88,7 +89,7 @@ class PlaylistsController < ApplicationController
 
   def check_permission
     @userId = Playlist.userId param[:id]
-    @user = User.find(@userId)
-    redirect_to root_path, notice: 'You dont have enough permissions to be here' unless @user==current_user
+
+    redirect_to root_path, notice: 'You dont have enough permissions to be here' unless @user.id==current_user.id
   end
 end

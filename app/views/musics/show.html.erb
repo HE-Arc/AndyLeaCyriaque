@@ -30,5 +30,8 @@ Music Rating : <%= rating_for_user @music, current_user, "autism_friendly", :sta
 <h3>Add comment</h3>
 
 <%= render 'comments/form' %>
-<%= link_to 'Edit', edit_music_path(@music) %>
+<% if @userId == current_user.id %>
+  <td><%= link_to 'Edit', edit_music_path(@music) %></td>
+  <td><%= link_to 'Destroy', @music, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% end %>
 <%= link_to 'Back', musics_path %>

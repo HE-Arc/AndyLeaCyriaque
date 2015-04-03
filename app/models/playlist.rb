@@ -5,7 +5,7 @@ class Playlist < ActiveRecord::Base
   has_many :music_playlists, :dependent => :delete_all
   has_many :musics, :through => :music_playlists
   
-  def self.user(param)
+  def self.userId(param)
     self.find(param).user_id
   end
   
@@ -17,9 +17,5 @@ class Playlist < ActiveRecord::Base
     @nbPlaylist=Playlist.where("user_id=?", param).count;
     render json: nbPlaylist
   end
-  
-  def self.count()
-    @nbPlaylist = Playlist.count;
-    render json: nbPlaylist
-  end
+
 end
