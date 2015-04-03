@@ -14,6 +14,11 @@ class MusicsController < ApplicationController
     @musics=Music.songsByUser current_user.id
     render 'index'
   end
+    
+  def indexLast
+    @musics = Music.lastSong
+    render 'index'
+  end
 
   # GET /musics/1
   # GET /musics/1.json
@@ -81,10 +86,6 @@ class MusicsController < ApplicationController
       format.html { redirect_to musics_url, notice: 'Your song has been deleted' }
       format.json { head :no_content }
     end
-  end
-  
-  def last
-    @lastSongs = Music.lastSong
   end
   
   def search_music

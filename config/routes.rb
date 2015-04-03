@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 	get 'music/:id' => 'musics#show'
 	get 'playlist/:id' => 'player#show_playlist'
 	get 'playlist/:id/edit' => 'player#edit_playlist'
-  get 'musics/last' => 'musics#last'
+  get 'last' => 'musics#indexLast'
   get 'mymusics' => 'musics#indexUser'
   get 'myplaylists' => 'playlists#indexUser'
 
