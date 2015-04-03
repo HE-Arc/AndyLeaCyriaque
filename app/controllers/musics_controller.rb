@@ -47,6 +47,10 @@ class MusicsController < ApplicationController
         @playlists = Playlist.all
         @musicPlaylists = @music.music_playlists
         @musicPlaylist = @music.music_playlists.build
+
+        respond_to do |format|
+            format.json { render json: { :infos => @music, :path => @music.path.url[0...-11] } }
+        end
     end
 
     # GET /musics/new

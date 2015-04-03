@@ -12,6 +12,7 @@ var Player = new function() {
     // Variables
     //
 
+    this.audio = '';
     this.buttonSidebarPlaylists = '#ma-player-sidebar-menu-playlists';
     this.buttonSidebarSongs = '#ma-player-sidebar-menu-songs';
     this.buttonSidebarUpload = '#ma-player-sidebar-menu-upload';
@@ -38,6 +39,9 @@ var Player = new function() {
         this.connect(this.buttonSidebarPlaylists, 'click', Playlists.index);
         this.connect(this.buttonSidebarSongs, 'click', Musics.index);
         this.connect(this.buttonSidebarUpload, 'click', Musics.new);
+
+        this.audio = new Audio();
+
     }
 
     /**
@@ -56,6 +60,25 @@ var Player = new function() {
                 $(Player.content).html(data);
                 if (typeof callbackOnDone !== 'undefined')
                     callbackOnDone();
+            });
+    }
+
+    this.play = function(id) {
+        $.ajax({
+                url: 'music/' + id,
+                dataType: 'json',
+                beforeSend: function(xhr) {
+                    xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                }
+            })
+            .done(function(data) {
+                Player.audio.src = data.path;
+                Player.audio.oncanplay = function() {
+                    alert("Can start playing video");
+                };
+                Player.audio.play();
+                $('#ma-player-sidebar-music-title').html(data.infos.title);
+                $('#ma-player-sidebar-music-artist').html(data.infos.artist);
             });
     }
 
@@ -83,7 +106,7 @@ var ProgressBarManager = new function() {
     // Methods
     //
 
-	/**
+    /**
      * Initialization
      */
     this.initialize = function() {
@@ -120,9 +143,9 @@ var ProgressBarManager = new function() {
         });
     }
 
-	/**
-	 * Recompute the progress bar's boundaries.
-	 */
+    /**
+     * Recompute the progress bar's boundaries.
+     */
     this.recalcBounds = function() {
         var startX = this.container.position().left - (this.handler.width() / 2);
         var endX = startX + this.container.width();
@@ -134,10 +157,10 @@ var ProgressBarManager = new function() {
         this.bounds.y2 = startY;
     }
 
-	/**
-	 * Change the progress bar's value.
-	 * @param {float} val Value from 0 to 100
-	 */
+    /**
+     * Change the progress bar's value.
+     * @param {float} val Value from 0 to 100
+     */
     this.setValue = function(val) {
         this.value = val;
 
@@ -151,9 +174,9 @@ var ProgressBarManager = new function() {
         });
     }
 
-	/**
-	 * Update handler's position.
-	 */
+    /**
+     * Update handler's position.
+     */
     this.updateHandler = function() {
         var left = this.container.position().left + this.bar.width();
         this.handler.css({
