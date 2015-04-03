@@ -1,78 +1,54 @@
 class MusicsController < ApplicationController
-  before_action :set_music, only: [:show, :edit, :update, :destroy]
-  before_filter :check_permission, only: [:edit, :update, :destroy]
-  layout false
 
-  # GET /musics
-  # GET /musics.json
-  def index
-    #@musics = Music.all
-    
-   #if params[:search]
-     #@musics = Music.search params[:search]#.order("created_at DESC")
-   #else
-     #@musics = Music.all#.order('created_at DESC')
-   #end
-  end  
-  
-  def indexUser
-    @musics=Music.songsByUser current_user.id
-    render 'index'
-  end
-    
-  def indexLast
-    @musics = Music.lastSong
-    render 'index'
-  end
-    
-  def search
-    @musics = Music.search params[:search]#.order("created_at DESC")
-    render 'index'
-  end
-    
+    before_action :set_music, only: [:show, :edit, :update, :destroy]
+    before_filter :check_permission, only: [:edit, :update, :destroy]
+    layout false
 
-  # GET /musics/1
-  # GET /musics/1.json
-  def show
-    @userId = Music.userId params[:id]
-    
-    @music = Music.find(params[:id])
-    
-    @comments = @music.comments
-    @comment = @music.comments.build
-    
-    @playlists = Playlist.all
-    @musicPlaylists = @music.music_playlists
-    @musicPlaylist = @music.music_playlists.build
-  end
+    # GET /musics
+    # GET /musics.json
+    def index
+        @musics = Music.all
 
-  # GET /musics/new
-  def new
-    @music = Music.new
-  end
-
-  # GET /musics/1/edit
-  def edit
-  end
-
-  # POST /musics
-  # POST /musics.json
-  def create
-    @music = Music.new(music_params)
-    @user = current_user
-    respond_to do |format|
-      if @music.save
-        @user.musics<<@music
-        format.html { redirect_to @music, notice: 'Your song was successfully created.' }
-        #format.json { render :show, status: :created, location: @music }
-		#format.html { render :show }
-		format.json { render json: { :status => :created, :message => @music}, location: @music }
-      else
-        format.html { render :new }
-        #format.json { render json: @music.errors.full_messages, status: :unprocessable_entity }
-		format.json { render json: { :status => :unprocessable_entity, :message => @music.errors.full_messages } }
-      end
+        #if params[:search]
+        # @musics = Music.search params[:search]#.order("created_at DESC")
+        #else
+        # @musics = Music.all#.order('created_at DESC')
+      #end
     end
+
+
+    def indexUser
+        @user = current_user
+        @musics=Music.songsByUser current_user.id
+        render 'index', layout: "player"
+    end
+
+    def indexLast
+        @user = current_user
+        @musics = Music.lastSong
+        render 'index', layout: "player"
+    end
+
+    def search
+        @user = current_user
+        @musics = Music.search params[:search]#.order("created_at DESC")
+        render 'index', layout: "player"
+    end
+
+
+    # GET /musics/1
+    # GET /musics/1.json
+    def show
+        @userId = Music.userId params[:id]
+
+        @music = Music.find(params[:id])
+
+        @comments = @music.comments
+        @comment = @music.comments.build
+
+        @playlists = Playlist.all
+        @musicPlaylists = @music.music_playlists
+        @musicPlaylist = @music.music_playlists.build
   end
 
   # PATCH/PUT /musics/1
