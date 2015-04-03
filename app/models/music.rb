@@ -36,16 +36,16 @@ class Music < ActiveRecord::Base
   end
   
   def self.count(param)
-    @nbMusic=Music.where(user_id="?", param).count;
+    @nbMusic=Music.where("user_id=?", param).count;
     render json: nbMusic
   end
 
   def self.search(searchParam)
-    search_condition = "%" + search + "%"
+    #search_condition = "%" + search + "%"
     Music.find(:all, :conditions => ['title LIKE ? OR description LIKE ?', "%#{searchParam}%"])
     #where("title LIKE ?", "%#{searchParam}%")
     #where("artist LIKE ?", "%#{searchParam}%")
-    render 'index'
+    #render 'index'
  end
   
 end

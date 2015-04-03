@@ -8,30 +8,29 @@ class MusicsController < ApplicationController
   def index
     @musics = Music.all
     
-   if params[:search]
-      @musics = Music.search params[:search]#.order("created_at DESC")
-    else
-      @musics = Music.all#.order('created_at DESC')
+   #if params[:search]
+     # @musics = Music.search params[:search]#.order("created_at DESC")
+    #else
+     # @musics = Music.all#.order('created_at DESC')
    end
     
   
   def indexUser
     @musics=Music.songsByUser current_user.id
     render 'index'
-
   end
     
   def indexLast
     @musics = Music.lastSong
     render 'index'
   end
-
-
-  end
-  
+    
   def search
     @musics = Music.search params[:search]#.order("created_at DESC")
-  
+    render 'index'
+  end
+    
+
   # GET /musics/1
   # GET /musics/1.json
   def show
@@ -98,12 +97,6 @@ class MusicsController < ApplicationController
       format.html { redirect_to musics_url, notice: 'Your song has been deleted' }
       format.json { head :no_content }
     end
-  end
-  
-  def search_music
-    #@music = Music.where(Music.title="?",params[:searchParam])
-    @music = Music.search(params[:searchParam])
-    render 'music/show'
   end
     
   private

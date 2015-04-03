@@ -11,7 +11,7 @@ class PlayerController < ApplicationController
 		@playlist = Playlist.find(params[:id])
 		render 'playlists/edit'
 	end
-    
+
 	def show_playlist
 		@user = current_user
 		@playlist = Playlist.find(params[:id])

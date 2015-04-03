@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'mymusics' => 'musics#indexUser'
   get 'myplaylists' => 'playlists#indexUser'
 
-  get 'music/search/:search'  => 'musics#search'
+  get 'search' => 'musics#search', :as => "search"
 
 
 	resources :musics do

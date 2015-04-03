@@ -23,11 +23,7 @@
 				</li>
 				<% end %>
 			</ul>   
-      <form class="navbar-form navbar-right">
-       <%= form_tag :controller => 'musics', :action => 'search', :method => 'get' %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search" %>
-        <%= submit_tag "Search", :name => nil %>
-      </form>    
+      <%= render 'musics/search' %>
 <!--
     	<form class="navbar-form navbar-right">
 <input type="text" class="form-control" placeholder="Search...">
