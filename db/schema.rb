@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328113425) do
+ActiveRecord::Schema.define(version: 20150403201409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20150328113425) do
     t.string   "artist"
     t.string   "album"
     t.integer  "note"
-    t.integer  "category_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -61,9 +60,9 @@ ActiveRecord::Schema.define(version: 20150328113425) do
     t.string   "path_content_type"
     t.integer  "path_file_size"
     t.datetime "path_updated_at"
+    t.string   "style"
   end
 
-  add_index "musics", ["category_id"], name: "index_musics_on_category_id", using: :btree
   add_index "musics", ["user_id"], name: "index_musics_on_user_id", using: :btree
 
   create_table "playlists", force: true do |t|
