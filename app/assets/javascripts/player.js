@@ -36,12 +36,13 @@ var Player = new function() {
      * Initialization
      */
     this.initialize = function() {
+        // Connect sidebar's buttons.
         this.connect(this.buttonSidebarPlaylists, 'click', Playlists.index);
         this.connect(this.buttonSidebarSongs, 'click', Musics.index);
         this.connect(this.buttonSidebarUpload, 'click', Musics.new);
 
+        // Create an audio element.
         this.audio = new Audio();
-
     }
 
     /**
@@ -73,9 +74,6 @@ var Player = new function() {
             })
             .done(function(data) {
                 Player.audio.src = data.path;
-                Player.audio.oncanplay = function() {
-                    alert("Can start playing video");
-                };
                 Player.audio.play();
                 $('#ma-player-sidebar-music-title').html(data.infos.title);
                 $('#ma-player-sidebar-music-artist').html(data.infos.artist);
