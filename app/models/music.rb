@@ -28,7 +28,7 @@ class Music < ActiveRecord::Base
   end
   
   def self.songsByUser(param)
-    self.where(user_id="?", param)
+    self.where("user_id=?", param)
   end
   
   def self.userId(param)

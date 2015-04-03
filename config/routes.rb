@@ -13,7 +13,8 @@ Rails.application.routes.draw do
 	get 'playlist/:id' => 'player#show_playlist'
 	get 'playlist/:id/edit' => 'player#edit_playlist'
   get 'musics/last' => 'musics#last'
-
+  get 'mymusics' => 'musics#indexUser'
+  get 'myplaylists' => 'playlists#indexUser'
 
 	resources :musics do
 		resources:comments, only: [:create]   

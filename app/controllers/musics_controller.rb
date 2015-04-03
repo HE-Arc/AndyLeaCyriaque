@@ -7,7 +7,12 @@ class MusicsController < ApplicationController
   # GET /musics.json
   def index
     @musics = Music.all
-    @musicsByUser=Music.songsByUser current_user.id
+    
+  end
+  
+  def indexUser
+    @musics=Music.songsByUser current_user.id
+    render 'index'
   end
 
   # GET /musics/1

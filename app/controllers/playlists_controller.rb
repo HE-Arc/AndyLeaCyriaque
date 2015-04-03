@@ -7,7 +7,12 @@ class PlaylistsController < ApplicationController
   # GET /playlists.json
   def index
     @playlists = Playlist.all
-    @playlistsByUser=Playlist.playlistsByUser current_user.id
+    
+  end
+  
+  def indexUser
+    @playlists=Playlist.playlistsByUser current_user.id
+    render 'index'
   end
 
   # GET /playlists/1
@@ -27,13 +32,6 @@ class PlaylistsController < ApplicationController
 
   # GET /playlists/1/edit
   def edit
-  end
-
-  #GET /playlists/id_user
-  def indexUser
-    @user = User.find(params[:id])
-    @playlists = @user.playlists
-    render 'index'
   end
 
   # POST /playlists
