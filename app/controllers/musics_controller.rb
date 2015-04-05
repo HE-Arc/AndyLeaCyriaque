@@ -44,6 +44,9 @@ class MusicsController < ApplicationController
         @music = Music.new(music_params)
         @user = current_user
         respond_to do |format|
+            if @music.title.empty?
+              @music.title=@music.path_file_name
+            end
             if @music.save
                 @user.musics<<@music
                 format.html { redirect_to @music, notice: 'Your song was successfully created.' }
@@ -54,7 +57,7 @@ class MusicsController < ApplicationController
                 format.html { render :new }
                 #format.json { render json: @music.errors.full_messages, status: :unprocessable_entity }
                 format.json { render json: { :status => :unprocessable_entity, :message => @music.errors.full_messages } }
-            end
+            end         
         end
     end
 
