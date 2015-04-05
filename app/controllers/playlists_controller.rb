@@ -15,7 +15,7 @@ class PlaylistsController < ApplicationController
         respond_to do |format|
             @user = current_user
             format.html { render action: :index, layout: "player" }
-            format.js { render js: "alert('lol');"}
+            format.js { render js: "alert('test');"}
         end
     end
 

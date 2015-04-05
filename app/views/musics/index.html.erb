@@ -13,7 +13,7 @@
       <tr class="ma-player-table-tr">
         <td class="ma-player-table-cover">
             <%= image_tag(music.cover.url, class: "img-responsive ma-player-list-cover") %>
-            <button class="btn btn-primary ma-player-list-play" onclick="Player.play(<%= music.id %>);"><%= fa_icon "play" %></button>
+            <button class="btn btn-primary ma-player-list-play" onclick="Player.load(<%= music.id %>);"><%= fa_icon "play" %></button>
         </td>
         <td>
             <strong><%= music.artist %></strong><br/>

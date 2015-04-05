@@ -5,12 +5,12 @@ var Musics = new function() {
 
     // musics/index
     this.index = function() {
-        Player.load('musics');
+        Player.show('musics');
     }
 
     // musics/new
     this.new = function() {
-        Player.load('musics/new', function() {
+        Player.show('musics/new', function() {
             $('#new_music').submit(function(event) {
                 // Stop form from submitting normally
                 event.preventDefault();

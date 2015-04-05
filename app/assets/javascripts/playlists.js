@@ -4,7 +4,7 @@
 var Playlists = new function() {
 
     this.new = function() {
-        Player.load("playlists/new", function() {
+        Player.show("playlists/new", function() {
             $('#back').click(function(event) {
                 // Stop form from submitting normally
                 event.preventDefault();
@@ -15,7 +15,7 @@ var Playlists = new function() {
 
     // playlists
     this.index = function() {
-        Player.load("playlists", function() {
+        Player.show("playlists", function() {
             $('#new_playlist').click(function(event) {
                 // Stop form from submitting normally
                 event.preventDefault();

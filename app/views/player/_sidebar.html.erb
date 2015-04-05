@@ -4,15 +4,15 @@
 </div>
 <div class="ma-player-sidebar-controls container-fluid">
 	<div>
-		<h3 id="ma-player-sidebar-music-title">J'aime les radis</h3>
-		<h4 id="ma-player-sidebar-music-artist">Jean-Michel Saumon</h4>
+		<h3 id="ma-player-sidebar-music-title"></h3>
+		<h4 id="ma-player-sidebar-music-artist"></h4>
 	</div>
 	<div>
 		<div class="pull-left">
-			<button id="ma-player-play" type="button" class="btn btn-primary"><%= fa_icon "play" %></button>
+			<button id="ma-player-play" type="button" class="btn btn-primary"><%= fa_icon "play", id: "ma-player-play-icon" %></button>
 		</div>
 		<div>
-			<div><small>00:45 / 06:20</small></div>
+			<div id="ma-player-time">00:00 / 00:00</div>
 			<div id="ma-player-progressbar" class="progress">
 				<div id="ma-player-progressbar-handler"></div>
 				<div id="ma-player-progressbar-bar" class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
