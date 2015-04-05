@@ -7,6 +7,12 @@ var Musics = new function() {
     this.index = function() {
         Player.show('mymusics');
     }
+    
+    this.search = function(event) {
+        Player.show('search', function(){
+          // nothing
+        }, {search: event.data()});
+    }
 
     // musics/new
     this.new = function() {

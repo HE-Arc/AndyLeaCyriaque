@@ -3,12 +3,11 @@ class MusicsController < ApplicationController
     before_action :set_music, only: [:show, :edit, :update, :destroy]
     before_filter :check_permission, only: [:edit, :update, :destroy]
     layout false
-
+  
     # GET /musics
     # GET /musics.json
     def index
-        @musics = Music.all
-
+        @musics = Music.all       
         #if params[:search]
         # @musics = Music.search params[:search]#.order("created_at DESC")
         #else
@@ -16,10 +15,9 @@ class MusicsController < ApplicationController
         #end
     end
 
-
     def indexUser
         @user = current_user
-        @musics = Music.songsByUser current_user.id
+        @musics=Music.songsByUser current_user.id
         render 'index'
     end
 
@@ -75,7 +73,6 @@ class MusicsController < ApplicationController
         @musicPlaylist = @music.music_playlists.build
 
         respond_to do |format|
-            format.html { render :show }
             format.json { render json: { :infos => @music, :path => @music.path.url[0...-11], :cover => @music.cover.url } }
         end
 

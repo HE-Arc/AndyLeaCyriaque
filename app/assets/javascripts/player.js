@@ -103,9 +103,10 @@ var Player = new function() {
      * @param  {string} path           Route
      * @param  {function} callbackOnDone Function called when the request is done.
      */
-    this.show = function(path, callbackOnDone) {
+    this.show = function(path, callbackOnDone, data) {
         $.ajax({
                 url: path,
+                data: data,
                 beforeSend: function(xhr) {
                     xhr.overrideMimeType("text/plain; charset=x-user-defined");
                 }
@@ -130,6 +131,8 @@ var Player = new function() {
 }
 
 var ControlsManager = new function() {
+  
+  var that = this;
 
     //
     // Variables
@@ -144,6 +147,9 @@ var ControlsManager = new function() {
     this.labelArtist = '#ma-player-sidebar-music-artist';
     this.labelTime = '#ma-player-time';
     this.labelTitle = '#ma-player-sidebar-music-title';
+    this.buttonSearch = '#search-submit';
+    this.inputSearch = '#search-input';
+
 
     this.duration = "00:00";
 
@@ -160,6 +166,9 @@ var ControlsManager = new function() {
         Player.connect(this.buttonSidebarPlaylists, 'click', Playlists.index);
         Player.connect(this.buttonSidebarSongs, 'click', Musics.index);
         Player.connect(this.buttonSidebarUpload, 'click', Musics.new);
+        $(this.buttonSearch).on('click', function(){
+          return $(that.inputSearch).val();
+        }, Musics.search);
     }
 
     /**
