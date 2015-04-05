@@ -39,7 +39,7 @@ class MusicsController < ApplicationController
     def new
       @music = Music.new
     end
-  
+
    # POST /musics
    # POST /musics.json
    def create
@@ -75,7 +75,7 @@ class MusicsController < ApplicationController
         @musicPlaylist = @music.music_playlists.build
 
         respond_to do |format|
-            format.json { render json: { :infos => @music, :path => @music.path.url[0...-11] } }
+            format.json { render json: { :infos => @music, :path => @music.path.url[0...-11], :cover => @music.cover.url } }
         end
 
     end

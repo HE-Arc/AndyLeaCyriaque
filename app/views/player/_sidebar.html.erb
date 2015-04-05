@@ -1,6 +1,5 @@
 <div class="ma-player-sidebar-userinfos">
-	<div class="ma-player-sidebar-avatar-wrapper"><%= image_tag(@user.avatar.url, class: "img-responsive ma-player-sidebar-avatar") %></div>
-  <h3><%= @user.firstname %> <%= @user.lastname %></h3>
+	<div id="ma-player-sidebar-cover-wrapper"><%= image_tag(@user.avatar.url, id: "ma-player-sidebar-cover", class: "img-responsive") %></div>
 </div>
 <div class="ma-player-sidebar-controls container-fluid">
 	<div>

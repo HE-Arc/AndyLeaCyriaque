@@ -48,7 +48,12 @@ var Player = new function() {
                 }
             })
             .done(function(data) {
+                // Cover
+                $('#ma-player-sidebar-cover').attr('src', data.cover);
+
+                // Audio source
                 Player.audio.src = data.path;
+
                 // Load and play the audio when it has buffered enough.
                 Player.audio.oncanplay = function() {
                     Player.infos = data.infos; // Load datas
@@ -57,7 +62,6 @@ var Player = new function() {
                     Player.play(); // Start playing audio
                 }
             });
-
     }
 
     /**
