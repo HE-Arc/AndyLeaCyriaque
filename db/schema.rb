@@ -11,16 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403201409) do
+ActiveRecord::Schema.define(version: 20150405194416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "admin_tables", force: true do |t|
-    t.integer "user_id"
-  end
-
-  add_index "admin_tables", ["user_id"], name: "index_admin_tables_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "comment"
