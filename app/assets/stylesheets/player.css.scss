@@ -19,6 +19,21 @@ td {
 	vertical-align: middle !important;
 }
 
+.navbar {
+	background-color: $color-primary;
+}
+
+.navbar a {
+	color:white !important;
+}
+
+.ma-player-navbar-logo {
+	display: inline !important;
+	height: 1em;
+	width: 1em;
+	margin-top: -0.2em;
+}
+
 #ma-player-time {
 	font-size: 0.8em;
 	padding-bottom: 0.4em;
@@ -148,7 +163,7 @@ td {
 }
 
 td.ma-player-table-cover {
-	width: 3em;
+	width: 3em !important;
 }
 
 td.ma-player-table-actions a {
