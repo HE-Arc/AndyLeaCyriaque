@@ -51,6 +51,10 @@ class PlaylistsController < ApplicationController
                 format.html { render :new }
                 format.json { render json: @playlist.errors, status: :unprocessable_entity }
             end
+            if @playlist.nom.empty?
+                @playlist.nom="playlist"+@playlist.id.to_s
+                @playlist.save
+            end
         end
     end
 
