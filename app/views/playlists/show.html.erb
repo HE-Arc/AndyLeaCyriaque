@@ -1,13 +1,33 @@
-<p id="notice"><%= notice %></p>
-<h2><%= @playlist.nom%> </h2>
-<tbody>
-  <% @musicsPlaylists.each do |music| %>
-    <% @song = Music.find(music.music_id) %>
-    <p><%=@song.artist%>
-      <%=@song.title%>
-    <audio controls> 
-    <source src=<%=@song.path.url[0...-11] %> type="audio/mpeg">  
-    </audio></p>
-  <%end%>
-  <%= link_to 'Back', playlists_path %>
-</tbody>
+<h1>All songs from <%= @playlist.nom%> </h1>
+<table class="table table-hover ma-player-table">
+  <thead>
+    <tr>
+      <th>Cover</th>
+      <th>Track</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @musicsPlaylists.each do |music| %>
+      <% @song = Music.find(music.music_id) %>
+       <tr class="ma-player-table-tr">
+            <td class="ma-player-table-cover">
+                <%= image_tag(@song.cover.url, class: "ma-player-list-cover") %>
+                <button class="btn btn-primary ma-player-list-play" onclick="Player.load(<%= @song.id %>);"><%= fa_icon "play" %></button>
+            </td>
+        <td>
+          <strong><%= @song.artist %></strong><br/>
+          <%= @song.title %>
+        </td>
+        <td class="ma-player-table-actions">
+            <% @userId = Music.find(@song.id).user_id %>
+            <% if @userId == current_user.id %>
+              <a href="#" onclick="Player.show('musics/<%= music.id %>/edit')"><%= fa_icon "pencil" %></a>
+              <a href="#" onclick="Player.delete('musics', <%= music.id %>)"><%= fa_icon "trash" %></a>
+            <% end %>
+              <a href="#" onclick="Player.show('musics/<%= music.id %>')"><%= fa_icon "info" %></a>
+          </td>
+        </tr>
+    <%end%>
+  </tbody>
+</table>

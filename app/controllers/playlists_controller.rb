@@ -21,10 +21,9 @@ class PlaylistsController < ApplicationController
     # GET /playlists/1
     # GET /playlists/1.json
     def show
+        @user=current_user
         @playlist = Playlist.find(params[:id])
-
         @userId = Playlist.userId params[:id]
-
         @musicsPlaylists = MusicPlaylist.allMusic params[:id]
     end
 
