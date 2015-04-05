@@ -38,14 +38,6 @@ class Music < ActiveRecord::Base
 		render json: nbMusic
 	end
 
-  def music_title
-    music.try(:title)
-  end
-  
-  def music_title=(title)
-    self.music = Music.find_or_create_by_name(title) if title.present?
-  end
-  
 	def self.search(searchParam)
 		#search_condition = "%" + search + "%"
 		#self.find(:all, :conditions => ['title LIKE ? OR description LIKE ?', "%#{searchParam}%"])
