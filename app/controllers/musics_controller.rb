@@ -2,18 +2,13 @@ class MusicsController < ApplicationController
 
     before_action :set_music, only: [:show, :edit, :update, :destroy]
     before_filter :check_permission, only: [:edit, :update, :destroy]
+    autocomplete :music, :title
     layout false
   
     # GET /musics
     # GET /musics.json
     def index
         @musics = Music.all       
-        #if params[:search]
-        # @musics = Music.search params[:search]#.order("created_at DESC")
-        #else
-        # @musics = Music.all#.order('created_at DESC')
-        #end
-    end
 
     def indexUser
         @user = current_user
@@ -116,7 +111,12 @@ class MusicsController < ApplicationController
         #params[:music].require(:title, :path).permit(:title, :artist, :album, :path, :cover)
         params[:music].permit(:title, :artist, :album, :path, :cover, :style)
     end
-
+  
+  def getMusicByName
+    @musics = Music.order(:title).where("title like ?","%#{params[:search]}%")
+    render json: @musics.map(&:title)
+  end
+  
     # Check user permission for the actions
     def check_permission
         @userId = Music.userId params[:id]

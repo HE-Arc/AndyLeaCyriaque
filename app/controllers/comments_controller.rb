@@ -17,5 +17,4 @@ class CommentsController < ApplicationController
     params[:comment].permit(:user_id, :comment_id, :comment, :login)
   end
   
-  
 end

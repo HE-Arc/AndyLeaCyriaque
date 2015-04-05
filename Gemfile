@@ -31,11 +31,15 @@ gem 'devise'
 
 #upload files
 gem 'jquery-fileupload-rails'
+
 #gem "paperclip", "~> 3.5.3"
 gem "paperclip", "~> 4.2"
 
 # allow to rate
 gem "letsrate", :git => "git://github.com/iammyr/letsrate.git"
+
+#autocomplete
+gem 'rails-jquery-autocomplete'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

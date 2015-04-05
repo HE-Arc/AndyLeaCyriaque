@@ -34,4 +34,4 @@ Music Rating : <%= rating_for_user @music, current_user, "autism_friendly", :sta
   <td><%= link_to 'Edit', edit_music_path(@music) %></td>
   <td><%= link_to 'Destroy', @music, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 <% end %>
-<%= link_to 'Back', musics_path %>
+<%= link_to 'Back', root_path %>

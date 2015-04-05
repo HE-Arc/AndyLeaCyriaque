@@ -21,12 +21,14 @@ Rails.application.routes.draw do
     get 'search' => 'musics#search', :as => "search"
     get 'currentuser' => 'users#current'
 
-
+    resources :products do
+      get :autocomplete_music_title, :on => :collection
+    end
+  
     resources :musics do
         resources:comments, only: [:create]
     end
     resources:music_playlists
-
 
     # The priority is based upon order of creation: first created -> highest priority.
     # See how all your routes lay out with "rake routes".
