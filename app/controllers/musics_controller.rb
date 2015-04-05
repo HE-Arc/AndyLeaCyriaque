@@ -75,6 +75,7 @@ class MusicsController < ApplicationController
         @musicPlaylist = @music.music_playlists.build
 
         respond_to do |format|
+            format.html { render :show }
             format.json { render json: { :infos => @music, :path => @music.path.url[0...-11], :cover => @music.cover.url } }
         end
 

@@ -26,11 +26,13 @@ var Musics = new function() {
                 }).done(function(data) {
                     console.log(data.status);
                     if (data.status == 'created') {
-                        $.ajax({
+                        /*$.ajax({
                             url: "/music/" + data.message.id,
                         }).done(function(data) {
                             $('#ma-player-content').html(data);
-                        });
+                        });*/
+                        Player.show('music/' + data.message.id);
+                        ControlsManager.updateBadges();
                     } else {
                         $('#error_explanation').removeClass('hidden');
                         $('#error_explanation_list').empty();
