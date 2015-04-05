@@ -147,12 +147,22 @@ td {
 	width: 3em;
 }
 
+td.ma-player-table-cover {
+	width: 3em;
+}
+
+td.ma-player-table-actions a {
+	min-width: 1em;
+}
+
 .ma-player-table-tr .ma-player-list-cover,
-.ma-player-table-tr:hover .ma-player-list-play {
-	display: block;
+.ma-player-table-tr:hover .ma-player-list-play,
+.ma-player-table-tr:hover td.ma-player-table-actions a {
+	display: inline-block;
 }
 
 .ma-player-table-tr .ma-player-list-play,
-.ma-player-table-tr:hover .ma-player-list-cover {
+.ma-player-table-tr:hover .ma-player-list-cover,
+.ma-player-table-tr td.ma-player-table-actions a {
 	display: none;
 }
