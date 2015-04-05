@@ -360,4 +360,6 @@ $(document).ready(function() {
     Player.initialize();
     ProgressBarManager.initialize();
     ControlsManager.initialize();
+
+    Player.show('mymusics');
 });
