@@ -15,7 +15,7 @@ var Playlists = new function() {
 
     // playlists
     this.index = function() {
-        Player.show("playlists", function() {
+        Player.show("myplaylists", function() {
             $('#new_playlist').click(function(event) {
                 // Stop form from submitting normally
                 event.preventDefault();

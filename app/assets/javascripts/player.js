@@ -127,7 +127,6 @@ var Player = new function() {
         else
             Player.play();
     }
-
 }
 
 var ControlsManager = new function() {
@@ -385,5 +384,5 @@ $(document).ready(function() {
     ProgressBarManager.initialize();
     ControlsManager.initialize();
 
-    Player.show('mymusics');
+    Player.show('musics');
 });

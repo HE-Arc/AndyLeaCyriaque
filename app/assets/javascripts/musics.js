@@ -5,7 +5,7 @@ var Musics = new function() {
 
     // musics/index
     this.index = function() {
-        Player.show('musics');
+        Player.show('mymusics');
     }
 
     // musics/new
@@ -26,11 +26,6 @@ var Musics = new function() {
                 }).done(function(data) {
                     console.log(data.status);
                     if (data.status == 'created') {
-                        /*$.ajax({
-                            url: "/music/" + data.message.id,
-                        }).done(function(data) {
-                            $('#ma-player-content').html(data);
-                        });*/
                         Player.show('music/' + data.message.id);
                         ControlsManager.updateBadges();
                     } else {
