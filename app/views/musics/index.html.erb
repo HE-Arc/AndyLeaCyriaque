@@ -20,9 +20,9 @@
             <%= music.title %>
         </td>
         <td class="ma-player-table-actions">
-            <a href=""><%= fa_icon "pencil" %></a>
-            <a href=""><%= fa_icon "trash" %></a>
-            <a href=""><%= fa_icon "info" %></a>
+            <a href="#" onclick="Player.show('musics/<%= music.id %>/edit')"><%= fa_icon "pencil" %></a>
+            <a href="#" onclick="Player.delete('musics', <%= music.id %>)"><%= fa_icon "trash" %></a>
+            <a href="#" onclick="Player.show('musics/<%= music.id %>')"><%= fa_icon "info" %></a>
         </td>
       </tr>
     <% end %>

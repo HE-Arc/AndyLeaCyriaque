@@ -7,7 +7,7 @@ var Musics = new function() {
     this.index = function() {
         Player.show('mymusics');
     }
-    
+
     this.search = function(event) {
         Player.show('search', function(){
           // nothing
@@ -30,7 +30,6 @@ var Musics = new function() {
                     processData: false,
                     contentType: false,
                 }).done(function(data) {
-                    console.log(data.status);
                     if (data.status == 'created') {
                         Player.show('music/' + data.message.id);
                         ControlsManager.updateBadges();

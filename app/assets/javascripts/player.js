@@ -31,6 +31,15 @@ var Player = new function() {
         $(object).on(event, callback);
     }
 
+    this.delete = function(object, id) {
+        $.ajax({
+            url: object + '/' + id,
+            type: 'DELETE',
+            dataType: 'json',
+        }).done(function(data) {
+            Player.show('mymusics');
+        });
+    }
 
     /**
      * Initialization
@@ -131,7 +140,7 @@ var Player = new function() {
 }
 
 var ControlsManager = new function() {
-  
+
   var that = this;
 
     //
