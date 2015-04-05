@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     get 'user/:login' => 'player#show_profile'
     get 'users/playlists/:id' => 'playlists#indexUser'
     get 'music/:id' => 'musics#show'
+    get 'musics/:id/delete' => 'musics#destroy'
+    get 'musics/:id/edit' => 'musics#edit'
     get 'playlist/:id' => 'player#show_playlist'
     get 'playlist/:id/edit' => 'player#edit_playlist'
     get 'player/badges' => 'player#badges'

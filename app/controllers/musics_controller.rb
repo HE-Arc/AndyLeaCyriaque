@@ -3,11 +3,15 @@ class MusicsController < ApplicationController
     before_action :set_music, only: [:show, :edit, :update, :destroy]
     before_filter :check_permission, only: [:edit, :update, :destroy]
     layout false
-  
+
+    def edit
+        render 'edit'
+    end
+
     # GET /musics
     # GET /musics.json
     def index
-        @musics = Music.all       
+        @musics = Music.all
         #if params[:search]
         # @musics = Music.search params[:search]#.order("created_at DESC")
         #else
@@ -57,7 +61,7 @@ class MusicsController < ApplicationController
                 format.html { render :new }
                 #format.json { render json: @music.errors.full_messages, status: :unprocessable_entity }
                 format.json { render json: { :status => :unprocessable_entity, :message => @music.errors.full_messages } }
-            end         
+            end
         end
     end
 
@@ -76,6 +80,7 @@ class MusicsController < ApplicationController
         @musicPlaylist = @music.music_playlists.build
 
         respond_to do |format|
+            format.html { render :show }
             format.json { render json: { :infos => @music, :path => @music.path.url[0...-11], :cover => @music.cover.url } }
         end
 
@@ -98,10 +103,13 @@ class MusicsController < ApplicationController
     # DELETE /musics/1
     # DELETE /musics/1.json
     def destroy
-        @music.destroy
         respond_to do |format|
-            format.html { redirect_to musics_url, notice: 'Your song has been deleted' }
-            format.json { head :no_content }
+            if @music.destroy
+                #format.html { render :index, notice: 'Your song has been deleted' }
+                format.json { render json: { :status => :ok } }
+            else
+                format.json { render json: { :status => :error } }
+            end
         end
     end
 
@@ -120,7 +128,10 @@ class MusicsController < ApplicationController
     # Check user permission for the actions
     def check_permission
         @userId = Music.userId params[:id]
-
-        redirect_to root_path, notice: 'You dont have enough permissions to be here' unless @user.id==current_user.id
+        @authorized = @userId == current_user.id
+        respond_to do |format|
+            format.html { redirect_to root_path, notice: 'You dont have enough permissions to be here' unless @authorized }
+            format.json { render json: { :status => :error } unless @authorized }
+        end
     end
 end
