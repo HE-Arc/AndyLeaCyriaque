@@ -1,6 +1,6 @@
 <h1>All playlists are here!</h1>
 
-<table>
+<table class="table table-hover ma-player-table">
   <thead>
     <tr>
       <th colspan="3"></th>
@@ -9,10 +9,19 @@
 
   <tbody>
     <% @playlists.each do |playlist| %>
-      <tr>
-        <td><%= playlist.nom %></td>
-        <td><%= playlist.content %></td>
-        <td><%= link_to 'Show', playlist %></td>
+      <tr class="ma-player-table-tr">
+          <td>
+            <strong><%= playlist.nom %><br /></strong>
+            <%= playlist.content %>
+          </td>
+          <td class="ma-player-table-actions">
+          <% @userId = Playlist.find(playlist.id).user_id %>
+          <% if @userId == current_user.id %>
+            <a href="#" onclick="Player.show('playlists/<%= playlist.id %>/edit')"><%= fa_icon "pencil" %></a>
+            <a href="#" onclick="Player.delete('playlists', <%= playlist.id %>)"><%= fa_icon "trash" %></a>
+          <% end %>
+            <a href="#" onclick="Player.show('playlists/<%= playlist.id %>')"><%= fa_icon "info" %></a>
+          </td>
       </tr>
     <% end %>
   </tbody>
