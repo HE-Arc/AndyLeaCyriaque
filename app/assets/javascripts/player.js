@@ -15,10 +15,22 @@ var Player = new function() {
     this.audio = '';
     this.content = '#ma-player-content';
     this.infos = '';
+    this.user = 0;
 
     //
     // Methods
     //
+
+    /**
+     * Connect a function to an element's event.
+     * @param  {string}   object   HTML element's ID
+     * @param  {string}   event    Event (eg. click)
+     * @param  {function} callback Callback function
+     */
+    this.connect = function(object, event, callback) {
+        $(object).on(event, callback);
+    }
+
 
     /**
      * Initialization
@@ -33,6 +45,14 @@ var Player = new function() {
         this.audio.addEventListener("pause", ControlsManager.pause, false);
         this.audio.addEventListener("play", ControlsManager.play, false);
         this.audio.addEventListener("timeupdate", ControlsManager.update, false);
+
+
+        $.getJSON('currentuser', {
+            format: "json"
+        }).done(function(data) {
+            Player.user = data;
+            ControlsManager.updateBadges();
+        });
     }
 
     /**
@@ -118,7 +138,9 @@ var ControlsManager = new function() {
 
     this.buttonSidebarPlay = '#ma-player-play';
     this.buttonSidebarPlaylists = '#ma-player-sidebar-menu-playlists';
+    this.buttonSidebarPlaylistsBadge = '#ma-player-sidebar-menu-playlists-badge';
     this.buttonSidebarSongs = '#ma-player-sidebar-menu-songs';
+    this.buttonSidebarSongsBadge = '#ma-player-sidebar-menu-songs-badge';
     this.buttonSidebarUpload = '#ma-player-sidebar-menu-upload';
     this.labelArtist = '#ma-player-sidebar-music-artist';
     this.labelTime = '#ma-player-time';
@@ -131,25 +153,14 @@ var ControlsManager = new function() {
     //
 
     /**
-     * Connect a function to an element's event.
-     * @param  {string}   object   HTML element's ID
-     * @param  {string}   event    Event (eg. click)
-     * @param  {function} callback Callback function
-     */
-    this.connect = function(object, event, callback) {
-        $(object).on(event, callback);
-    }
-
-    /**
      * Initialization
      */
     this.initialize = function() {
         // Connect sidebar's buttons.
-        this.connect(this.buttonSidebarPlay, 'click', Player.switch);
-        this.connect(this.buttonSidebarPlaylists, 'click', Playlists.index);
-        this.connect(this.buttonSidebarSongs, 'click', Musics.index);
-        this.connect(this.buttonSidebarUpload, 'click', Musics.new);
-
+        Player.connect(this.buttonSidebarPlay, 'click', Player.switch);
+        Player.connect(this.buttonSidebarPlaylists, 'click', Playlists.index);
+        Player.connect(this.buttonSidebarSongs, 'click', Musics.index);
+        Player.connect(this.buttonSidebarUpload, 'click', Musics.new);
     }
 
     /**
@@ -212,6 +223,15 @@ var ControlsManager = new function() {
     this.updateTime = function() {
         var currentTime = Utils.formatTime(Player.audio.currentTime);
         $(this.labelTime).html(currentTime + " / " + this.duration);
+    }
+
+    this.updateBadges = function() {
+        $.getJSON('player/badges', {
+            format: "json"
+        }).done(function(data) {
+            $(ControlsManager.buttonSidebarPlaylistsBadge).html(data.playlists);
+            $(ControlsManager.buttonSidebarSongsBadge).html(data.musics);
+        });
     }
 }
 
@@ -345,6 +365,10 @@ var ProgressBarManager = new function() {
         Player.audio.currentTime = Player.audio.duration / 100 * this.value;
     }
 };
+
+var NavbarManager = new function() {
+
+}
 
 
 //

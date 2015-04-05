@@ -12,6 +12,14 @@ class UsersController < ApplicationController
     def show
     end
 
+    skip_before_action :set_user
+    layout false
+    def current
+        respond_to do |format|
+            format.json { render json: current_user.id }
+        end
+    end
+
     # GET /users/new
     def new
         @user = User.new

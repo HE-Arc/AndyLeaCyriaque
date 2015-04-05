@@ -30,4 +30,9 @@ class PlayerController < ApplicationController
 		@user = User.find_by(login: params[:login]) #User.find(params[:login])
 	end
 
+	def badges
+		musics = Music.songsByUser current_user.id
+		playlists = Playlist.playlistsByUser current_user.id
+		render json: { :musics => musics.count, :playlists => playlists.count }
+	end
 end

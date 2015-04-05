@@ -13,11 +13,13 @@ Rails.application.routes.draw do
     get 'music/:id' => 'musics#show'
     get 'playlist/:id' => 'player#show_playlist'
     get 'playlist/:id/edit' => 'player#edit_playlist'
+    get 'player/badges' => 'player#badges'
 
     get 'last' => 'musics#indexLast'
     get 'mymusics' => 'musics#indexUser'
     get 'myplaylists' => 'playlists#indexUser'
     get 'search' => 'musics#search', :as => "search"
+    get 'currentuser' => 'users#current'
 
 
     resources :musics do

@@ -19,7 +19,7 @@ class MusicsController < ApplicationController
 
     def indexUser
         @user = current_user
-        @musics=Music.songsByUser current_user.id
+        @musics = Music.songsByUser current_user.id
         render 'index'
     end
 
