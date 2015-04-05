@@ -34,7 +34,7 @@ class Music < ActiveRecord::Base
 	end
 
 	def self.count(param)
-		@nbMusic=Music.where(user_id="?", param).count;
+		@nbMusic=Music.where("user_id=?", param).count;
 		render json: nbMusic
 	end
 
