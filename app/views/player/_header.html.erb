@@ -15,7 +15,7 @@
 				</li>
 				<% if user_signed_in? %>
 				<li>
-					<a id="ma-player-navbar-logout" rel="nofollow" href="/users/sign_out" data-method="delete">
+					<a id="ma-player-navbar-logout" rel="nofollow" href="users/sign_out" data-method="delete">
 					    Logout <%= image_tag(@user.avatar.url, class: "ma-player-navbar-avatar") %>
 					</a>
 				</li>
