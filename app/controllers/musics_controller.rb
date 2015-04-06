@@ -20,18 +20,21 @@ class MusicsController < ApplicationController
     end
 
     def indexUser
+        @title = 'My songs'
         @user = current_user
         @musics=Music.songsByUser current_user.id
         render 'index'
     end
 
     def indexLast
+        @title = 'Last songs uploaded'
         @user = current_user
         @musics = Music.lastSong
         render 'index'
     end
 
     def search
+        @title = 'Results for "' + params[:search] + '"'
         @user = current_user
         @musics = Music.search params[:search]#.order("created_at DESC")
         render 'index'
@@ -54,12 +57,9 @@ class MusicsController < ApplicationController
             if @music.save
                 @user.musics<<@music
                 format.html { redirect_to @music, notice: 'Your song was successfully created.' }
-                #format.json { render :show, status: :created, location: @music }
-                #format.html { render :show }
                 format.json { render json: { :status => :created, :message => @music}, location: @music }
             else
                 format.html { render :new }
-                #format.json { render json: @music.errors.full_messages, status: :unprocessable_entity }
                 format.json { render json: { :status => :unprocessable_entity, :message => @music.errors.full_messages } }
             end
         end

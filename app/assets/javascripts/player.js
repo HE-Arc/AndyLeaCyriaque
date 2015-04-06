@@ -47,7 +47,7 @@ var Player = new function() {
     * Show default page
     */
     this.home = function() {
-        Player.show('musics');
+        Player.show('last');
     }
 
     /**
