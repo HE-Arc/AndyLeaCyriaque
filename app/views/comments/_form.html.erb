@@ -1,12 +1,13 @@
-<%= form_for [@music, @comment] do |f| %>
+<%= form_for [@music, @comment], :html => { :id => "new_comment", :class => "new_comment" } do |f| %>
 
 <p>
   <%= f.label :comment %>
   <%= f.text_area :comment %>
+  <%= f.hidden_field :music_id, :value => @music.id, :id => "music_id" %>
 </p>
 
 <p>
-  <%= f.submit %>
+  <%= f.submit :id => "button_comment" %>
 </p>
 
 <% end %>
