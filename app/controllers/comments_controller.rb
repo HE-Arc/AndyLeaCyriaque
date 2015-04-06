@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def new
-    
+    @comment = Comment.new
   end
   
   def create  
@@ -9,7 +9,16 @@ class CommentsController < ApplicationController
       @user = current_user
       @comment.login=@user.login
       @user.comments << @comment
-      redirect_to @music
+      #redirect_to @music
+      respond_to do |format|
+        if @comment.save
+          format.html { redirect_to @music, notice: 'Comment was successfully created.' }
+           format.json { render json: { :status => :created, :message => @music}, location: @music }
+       else
+          format.html { render :new }
+          format.json { render json: @music.errors, status: :unprocessable_entity }
+        end
+    end
   end
   
   private
