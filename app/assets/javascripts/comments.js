@@ -1,9 +1,10 @@
-var Comments = new function(){
- 
-    this.musicId = $("#music_id").val();
-  
-       this.new = function() {
-        Player.show('music/' + musicId, function() {
+/**
+ * Comments pages handlers
+ */
+var Comments = new function() {
+
+    this.new = function(id) {
+        Player.show('music/' + id, function() {
             $('#new_comment').submit(function(event) {
                 // Stop form from submitting normally
                 event.preventDefault();
@@ -18,7 +19,7 @@ var Comments = new function(){
                     contentType: false,
                 }).done(function(data) {
                     if (data.status == 'created') {
-                        Player.show('music/' + data.message.id);
+                        Musics.show(id);
                     } else {
                         $('#error_explanation').removeClass('hidden');
                         $('#error_explanation_list').empty();
@@ -30,4 +31,5 @@ var Comments = new function(){
             });
         });
     }
+
 }

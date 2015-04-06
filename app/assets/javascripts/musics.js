@@ -45,4 +45,10 @@ var Musics = new function() {
         });
     }
 
+    this.show = function(id) {
+        Player.show('musics/' + id, function() {
+            Comments.new(id); // Connect the comment form.
+        });
+    }
+
 }

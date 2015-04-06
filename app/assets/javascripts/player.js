@@ -1,6 +1,7 @@
 //= require utils
 //= require musics
 //= require playlists
+//= require comments
 
 /**
  * Player object
