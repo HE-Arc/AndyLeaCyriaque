@@ -28,6 +28,7 @@ td {
 
 .navbar a {
 	color:white !important;
+	max-heigth: 51px;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -39,6 +40,17 @@ td {
 	height: 1em;
 	width: 1em;
 	margin-top: -0.2em;
+}
+
+#ma-player-navbar-logout {
+	padding: 8px 1em;
+	vertical-align: middle;
+}
+
+.ma-player-navbar-avatar {
+	display: inline-block;
+	height: 2.5em;
+	width: 2.5em;
 }
 
 #ma-player-time {
@@ -67,6 +79,7 @@ td {
 	}
 	.ma-player-navbar-search {
 		margin: 0;
+		max-width: 250px;
 		padding: 0;
 		padding-top: 8px;
 		padding-bottom: 0 !important;
