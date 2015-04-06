@@ -50,8 +50,8 @@ class PlaylistsController < ApplicationController
                 format.html { render :new }
                 format.json { render json: @playlist.errors, status: :unprocessable_entity }
             end
-            if @playlist.nom.empty?
-                @playlist.nom="playlist"+@playlist.id.to_s
+            if @playlist.name.empty?
+                @playlist.name="playlist"+@playlist.id.to_s
                 @playlist.save
             end
         end
@@ -93,7 +93,7 @@ class PlaylistsController < ApplicationController
     end
 
     def get_params
-        params.require(:playlist).permit(:user_id, :nom, :content)
+        params.require(:playlist).permit(:user_id, :name, :content)
     end
 
     def check_permission
