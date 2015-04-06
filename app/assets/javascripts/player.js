@@ -1,4 +1,5 @@
 //= require letsrate
+//= require jquery.raty
 //= require utils
 //= require musics
 //= require playlists
@@ -143,9 +144,9 @@ var Player = new function() {
     this.switch = function() {
         var playing = !Player.audio.paused;
         if (playing)
-        Player.pause();
+            Player.pause();
         else
-        Player.play();
+            Player.play();
     }
 }
 
