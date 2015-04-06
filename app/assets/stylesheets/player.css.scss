@@ -9,6 +9,7 @@
 html,
 body,
 .ma-player {
+	background-color: $color-gray-lighter;
 	height: 100%;
 	width: 100%;
 }
@@ -16,11 +17,13 @@ body,
 table,
 tr,
 td {
+	border-color: $color-border !important;
 	vertical-align: middle !important;
 }
 
 .navbar {
 	background-color: $color-primary;
+	border: 0;
 }
 
 .navbar a {
@@ -166,8 +169,13 @@ td.ma-player-table-cover {
 	width: 3em !important;
 }
 
+td.ma-player-table-actions {
+	width: 10em;
+}
+
 td.ma-player-table-actions a {
-	min-width: 1em;
+	font-size: 1.3em;
+	padding: 0.3em;
 }
 
 .ma-player-table-tr .ma-player-list-cover,

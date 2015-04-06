@@ -1,4 +1,4 @@
-<h1>All playlists are here!</h1>
+<h1>My playlist</h1>
 
 <table class="table table-hover ma-player-table">
   <thead>
@@ -9,9 +9,9 @@
 
   <tbody>
     <% @playlists.each do |playlist| %>
-      <tr class="ma-player-table-tr">
+      <tr class="ma-player-table-tr cursor-pointer">
           <td>
-            <strong><%= playlist.nom %><br /></strong>
+            <a href="#" onclick="Player.show('playlists/<%= playlist.id %>')"><strong><%= playlist.nom %></strong></a><br/>
             <%= playlist.content %>
           </td>
           <td class="ma-player-table-actions">
