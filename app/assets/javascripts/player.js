@@ -1,3 +1,4 @@
+//= require letsrate
 //= require utils
 //= require musics
 //= require playlists

@@ -21,6 +21,11 @@ td {
 	vertical-align: middle !important;
 }
 
+hr {
+	border: 0;
+	border-top: $color-border solid 1px;
+}
+
 .navbar {
 	background-color: $color-primary;
 	border: 0;
@@ -224,4 +229,19 @@ form.edit_playlist {
 
 div.actions {
 	padding-top: 2em;
+}
+
+.ma-player-music-cover {
+	border: 1px solid $color-border;
+	margin: 3em;
+	padding: 3px;
+	width: 80%;
+}
+
+.ma-player-music-comments.ma-player-music-comment {
+	border-bottom: 1px solid $color-border;
+	padding: 1em 2em;
+	&:last-child {
+		border-bottom: 0;
+	}
 }

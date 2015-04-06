@@ -1,36 +1,31 @@
-<p id="notice"><%= notice %></p>
+<h1>About that song</h1>
+<div class="row">
+    <div class="col-md-4">
+        <%= image_tag(@music.cover.url, class: "ma-player-music-cover img-responsive") %>
+    </div>
+    <div class="col-md-8">
+        <h1><%= @music.title%></h1>
+        <h2><%= @music.artist%></h2>
+        <hr>
+        <p>
+            <strong>Rating</strong>
+            <p>
+                Overall : <%= rating_for @music, "overall", layout: "player" %>
+                Yours : <%= rating_for_user @music, current_user, "autism_friendly", :star => 10 %>
+            </p>
+        </p>
+        <p>
+            <strong>Playlist</strong>
+            <%= render :partial => "musics_playlists/form", :locals => {:music_id => @music.id} %>
+        </p>
 
-<h2><%= @music.title%> </h2>
+        <hr>
 
-<td> <%= image_tag(@music.cover.url, class: "img-responsive ma-player-sidebar-avatar") %></td>
-
-<audio controls>
- <source src=<%=@music.path.url[0...-11] %> type="audio/mpeg">
-</audio>
-
-
-Show us how you like this music!
-
-<p>
-
-<strong>Rating:</strong><br />
-Overall : <%= rating_for @music, "overall" %>
-</p>
-<h />
-<p>
-
-<strong>Your votes:</strong><br />
-Music Rating : <%= rating_for_user @music, current_user, "autism_friendly", :star => 10 %>
-</p>
-<%= render :partial => "musics_playlists/form", :locals => {:music_id => @music.id} %>
-<hr/>
-
-<%= render @comments %>
-
-<h3>Add comment</h3>
-
-<%= render 'comments/form' %>
-<% if @userId == current_user.id %>
-  <td><%= link_to 'Edit', edit_music_path(@music) %></td>
-  <td><%= link_to 'Destroy', @music, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-<% end %>
+        <h3>Comments</h3>
+        <div class="ma-player-music-comments">
+            <%= render @comments %>
+        </div>
+        <h4>Add comment</h4>
+        <%= render 'comments/form' %>
+    </div>
+</div>

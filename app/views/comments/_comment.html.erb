@@ -1,2 +1,4 @@
-<p><%= comment.login %></p>
-<p><%= comment.comment %></p>
+<div class="ma-player-music-comment">
+    <strong><%= comment.login %><% if comment.login != nil %> said...<% end %></strong><br/>
+    <i><%= comment.comment %></i>
+</div>
