@@ -31,13 +31,14 @@ var Player = new function() {
         $(object).on(event, callback);
     }
 
-    this.delete = function(object, id) {
+    this.delete = function(object, id, redirection) {
         $.ajax({
             url: object + '/' + id,
             type: 'DELETE',
             dataType: 'json',
         }).done(function(data) {
-            Player.show('mymusics');
+            Player.show(redirection);
+            ControlsManager.updateBadges();
         });
     }
 

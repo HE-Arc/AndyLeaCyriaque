@@ -11,14 +11,14 @@
     <% @playlists.each do |playlist| %>
       <tr class="ma-player-table-tr cursor-pointer">
           <td>
-            <a href="#" onclick="Player.show('playlists/<%= playlist.id %>')"><strong><%= playlist.nom %></strong></a><br/>
+            <a href="#" onclick="Player.show('playlists/<%= playlist.id %>')"><strong><%= playlist.name %></strong></a><br/>
             <%= playlist.content %>
           </td>
           <td class="ma-player-table-actions">
           <% @userId = Playlist.find(playlist.id).user_id %>
           <% if @userId == current_user.id %>
             <a href="#" onclick="Player.show('playlists/<%= playlist.id %>/edit')"><%= fa_icon "pencil" %></a>
-            <a href="#" onclick="Player.delete('playlists', <%= playlist.id %>)"><%= fa_icon "trash" %></a>
+            <a href="#" onclick="Player.delete('playlists', <%= playlist.id %>, 'myplaylists')"><%= fa_icon "trash" %></a>
           <% end %>
             <a href="#" onclick="Player.show('playlists/<%= playlist.id %>')"><%= fa_icon "info" %></a>
           </td>

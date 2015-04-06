@@ -42,17 +42,16 @@ class PlaylistsController < ApplicationController
         @user = current_user
         @playlist = Playlist.new(get_params)
         respond_to do |format|
-            if @playlist.save
-                @user.playlists << @playlist
-                format.html { redirect_to @playlist, notice: 'Playlist was successfully created.' }
-                format.json { render :show, status: :created, location: @playlist }
-            else
-                format.html { render :new }
-                format.json { render json: @playlist.errors, status: :unprocessable_entity }
-            end
             if @playlist.name.empty?
                 @playlist.name="playlist"+@playlist.id.to_s
-                @playlist.save
+            end
+            if @playlist.save
+                @user.playlists << @playlist
+                format.html { redirect_to @playlist, notice: 'Your playlist was successfully created.' }
+                format.json { render json: { :status => :created, :message => @playlist}, location: @playlist }
+            else
+                format.html { render :new }
+                format.json { render json: { :status => :unprocessable_entity, :message => @playlist.errors.full_messages } }
             end
         end
     end
@@ -74,10 +73,15 @@ class PlaylistsController < ApplicationController
     # DELETE /playlists/1
     # DELETE /playlists/1.json
     def destroy
-        @playlist.destroy
+        @playlist = Playlist.find(params[:id])
         respond_to do |format|
-            format.html { redirect_to playlists_url, notice: 'Playlist was successfully destroyed.' }
-            format.json { head :no_content }
+            if @playlist.destroy
+                format.html { redirect_to @playlist, notice: 'Playlist was successfully destroyed.' }
+                format.json { render :show, status: :ok, location: @playlist }
+            else
+                format.html { render :show }
+                format.json { render json: @playlist.errors, status: :unprocessable_entity }
+            end
         end
     end
 
@@ -97,8 +101,11 @@ class PlaylistsController < ApplicationController
     end
 
     def check_permission
-        @userId = Playlist.userId param[:id]
-
-        redirect_to root_path, notice: 'You dont have enough permissions to be here' unless @user.id==current_user.id
+        @userId = Playlist.userId params[:id]
+        @authorized = @userId == current_user.id
+        respond_to do |format|
+            format.html { redirect_to root_path, notice: 'You dont have enough permissions to be here' unless @authorized }
+            format.json { render json: { :status => :error } unless @authorized }
+        end
     end
 end

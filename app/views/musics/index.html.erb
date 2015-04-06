@@ -23,7 +23,7 @@
           <% @userId = Music.find(music.id).user_id %>
           <% if @userId == current_user.id %>
             <a href="#" onclick="Player.show('musics/<%= music.id %>/edit')"><%= fa_icon "pencil" %></a>
-            <a href="#" onclick="Player.delete('musics', <%= music.id %>)"><%= fa_icon "trash" %></a>
+            <a href="#" onclick="Player.delete('musics', <%= music.id %>, 'mymusics')"><%= fa_icon "trash" %></a>
           <% end %>
             <a href="#" onclick="Player.show('musics/<%= music.id %>')"><%= fa_icon "info" %></a>
         </td>
