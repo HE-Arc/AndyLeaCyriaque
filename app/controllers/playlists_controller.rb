@@ -42,11 +42,13 @@ class PlaylistsController < ApplicationController
         @user = current_user
         @playlist = Playlist.new(get_params)
         respond_to do |format|
-            if @playlist.name.empty?
-                @playlist.name="playlist"+@playlist.id.to_s
-            end
+           
             if @playlist.save
                 @user.playlists << @playlist
+                if @playlist.name.empty?
+                  @playlist.name="playlist"+@playlist.id.to_s
+                  @playlist.save
+                end
                 format.html { redirect_to @playlist, notice: 'Your playlist was successfully created.' }
                 format.json { render json: { :status => :created, :message => @playlist}, location: @playlist }
             else
