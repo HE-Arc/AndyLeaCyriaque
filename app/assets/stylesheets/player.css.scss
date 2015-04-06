@@ -179,14 +179,12 @@ td.ma-player-table-actions a {
 }
 
 .ma-player-table-tr .ma-player-list-cover,
-.ma-player-table-tr:hover .ma-player-list-play,
-.ma-player-table-tr:hover td.ma-player-table-actions a {
+.ma-player-table-tr:hover .ma-player-list-play {
 	display: inline-block;
 }
 
 .ma-player-table-tr .ma-player-list-play,
-.ma-player-table-tr:hover .ma-player-list-cover,
-.ma-player-table-tr td.ma-player-table-actions a {
+.ma-player-table-tr:hover .ma-player-list-cover {
 	display: none;
 }
 

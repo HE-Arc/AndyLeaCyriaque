@@ -1,5 +1,5 @@
 <%= form_for(@musicPlaylist) do |f| %>
-<%= f.collection_select(:playlist_id, Playlist.all, :id, :name ) %>
+  <%= f.collection_select(:playlist_id, Playlist.all, :id, :name ) %>
   <%= f.hidden_field :music_id, :value => music_id %>
   <%= f.submit "Add to this playlist!" %>
 <% end %>
