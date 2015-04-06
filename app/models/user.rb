@@ -9,8 +9,7 @@ class User < ActiveRecord::Base
         }, :default_url => "user-undefined.png"
         validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-        devise :database_authenticatable, :registerable,
-        :recoverable, :rememberable, :trackable, :validatable, :confirmable
+        devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
         validates_uniqueness_of :login
         has_many :playlists
         has_many :comments
