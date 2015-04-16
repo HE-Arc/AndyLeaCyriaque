@@ -20,6 +20,8 @@ var Musics = new function() {
             $('#new_music').submit(function(event) {
                 // Stop form from submitting normally
                 event.preventDefault();
+				
+				$('#new_music_submit_spinner').removeClass('hidden');
 
                 // Handle data submission
                 $.ajax({
@@ -34,6 +36,7 @@ var Musics = new function() {
                         Musics.show(data.message.id);
                         ControlsManager.updateBadges();
                     } else {
+						$('#new_music_submit_spinner').addClass('hidden');
                         $('#error_explanation').removeClass('hidden');
                         $('#error_explanation_list').empty();
                         $.each(data.message, function(index, value) {

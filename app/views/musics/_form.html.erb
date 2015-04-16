@@ -47,6 +47,7 @@
 	</div>
 </div>
 <div class="row actions">
-	<%= f.submit class: 'btn btn-primary btn-lg', value: 'Save' %>
+	<!--%= f.submit class: 'btn btn-primary btn-lg', value: 'Save <i class="fa fa-spinner"></i>' %-->
+	<button name="commit" class="btn btn-primary btn-lg">Save<i id="new_music_submit_spinner" class="fa fa-spinner hidden"></i></button>
 </div>
 <% end %>
