@@ -92,10 +92,10 @@ class MusicsController < ApplicationController
         respond_to do |format|
             if @music.update(music_params)
                 format.html { redirect_to @music, notice: 'Your song was successfully updated.' }
-                format.json { render :show, status: :ok, location: @music }
+           	    format.json { render json: { :status => :updated, :message => @music}, location: @music }
             else
                 format.html { render :edit }
-                format.json { render json: @music.errors, status: :unprocessable_entity }
+                format.json { render json: { :status => :unprocessable_entity, :message => @music.errors.full_messages } }
             end
         end
     end
