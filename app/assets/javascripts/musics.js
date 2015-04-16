@@ -21,6 +21,7 @@ var Musics = new function() {
                 // Stop form from submitting normally
                 event.preventDefault();
 				
+				// Show the spinner.
 				$('#new_music_submit_spinner').removeClass('hidden');
 
                 // Handle data submission
@@ -36,7 +37,7 @@ var Musics = new function() {
                         Musics.show(data.message.id);
                         ControlsManager.updateBadges();
                     } else {
-						$('#new_music_submit_spinner').addClass('hidden');
+						$('#new_music_submit_spinner').addClass('hidden'); // Hide the spinner.
                         $('#error_explanation').removeClass('hidden');
                         $('#error_explanation_list').empty();
                         $.each(data.message, function(index, value) {
