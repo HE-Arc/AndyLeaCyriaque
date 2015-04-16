@@ -31,7 +31,7 @@ var Musics = new function() {
                     contentType: false,
                 }).done(function(data) {
                     if (data.status == 'created') {
-                        Player.show('music/' + data.message.id);
+                        Musics.show(data.message.id);
                         ControlsManager.updateBadges();
                     } else {
                         $('#error_explanation').removeClass('hidden');
